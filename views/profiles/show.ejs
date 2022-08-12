@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="profile-show-page">
+    <h1>And this is the SHOW Page for Profiles</h1>
+    <% if(user) { %>
+        <a href="/logout">LOG OUT</a><br><br>
+        <a href="/characters/new" class="new-char">New Character</a>
+        <% } else { %>
+        <br><br>
+        <a href="/auth/google" class="login">LOG IN</a>
+        <% } %>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Build Description</th>
+                    <th>Build Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% characters.forEach(c => { %>
+                 <tr>
+                    <td><%= c.name %> </td>
+                    <td><a href="/profiles/<%= c._id %>/<%= c. %>  "></a></td>
+                 </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <div><% Profile.characters.forEach(c => { %>
+            
+        <% }) %></div>
+
+        </section>
+</body>
+</html>
