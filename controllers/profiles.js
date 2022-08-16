@@ -1,25 +1,35 @@
+const { profile } = require('console');
 const Character = require('../models/character');
 const Profile = require('../models/profile');
+const User = require('../models/user');
 
 module.exports = {
     index,
+    new: newProfile,
+    create,
     show
 };
 
 function show(req, res) {
     Profile.findById(req.params.id)
     .populate('characters')
-    .exec(function(err, proDoc) {
-        console.log(proDoc, "<- show page")
-        Character.find({_id: {nin: proDoc.characters }}, function(err, characters) {
+    .exec(function(err, profile) {
+        console.log(profile, "<- show page")
+        Character.find({profile: profile._id}, function(err, characters) {
             console.log(characters, '<- characters')
-            res.render(`profiles/show/${Profile._id}`, {
+            res.render('profiles/show', {
                 title: 'Profile Characters',
-                proDoc: proDoc,
+                profile: profile,
                 characters: characters
             })
         })
     })
+    // res.render(`profiles/${Profile._id}`, {
+    //     title: 'Profile Page',
+    //     profile: profile
+        
+    // });
+
 }
 function index(req, res) {
     // Character.find({}, function(err, allChar) {
@@ -30,5 +40,43 @@ function index(req, res) {
     //     res.render('characters/index.ejs');
     //         characters: allChar
     // })
-    res.render('profiles/index.ejs');        
+    if (User.profile === true) {
+        res.render(`profiles`)
+    } else {
+        Profile.find({}, function(err, profile) {
+            res.render('profiles/new.ejs', {
+                title: 'Create Profile',
+                profile
+            });
+        })
+    }
+
+
+    // res.render('profiles/index.ejs');        
+}
+
+function create(req, res) {
+    console.log(req.body, "<- Profile Name!")
+    Profile.create(req.body, function(err, profile) {
+        if(err) {
+            console.log(err, '<- Error in Profile Creation')
+            return res.render('profiles/new.ejs')
+        }
+        console.log(profile, '<- Profile Created!')
+        res.redirect(`/profiles/${profile._id}`, {
+            title: 'Profile Characters',
+            profile: profile,
+            characters: profile.characters
+        });
+    });
+}
+
+
+function newProfile(req, res) {
+    Profile.find({}, function(err, profile) {
+        res.render('profiles/new.ejs', {
+            title: 'Create Profile',
+            profile
+        });
+    })
 }

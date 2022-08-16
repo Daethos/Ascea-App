@@ -1,25 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%- include('../partials/header') %>
     
-        <h1>Character Creation Page!</h1>
-        <h2>Are you the next va'Esai?</h2>
+    <h1>Character Creation Page!</h1>
+    <h2>Are you the next va'Esai?</h2>
+    <br><br>
+    <form id="char-create" action="/characters/new" method="POST">
+        <h2>Character Name:</h2>
+        Character Name Here!<br>
+        <input type="text" name="name"></input>
         <br><br>
         <h2>Build Description:</h2>
-        <textarea name="content">WARNING: No Profanity Filter!</textarea>
+        <textarea name="description">WARNING: No Profanity Filter!</textarea>
         <br><br>
         <h2>Choose your Weapon:</h2>
+        <select name="weapon" id="weap-menu">
+            <% weapons.forEach(function(w) { %>
+                <option><%= w.name %><%= w._id %></option>
+            <% }) %>
+            <!-- <textarea id="weap-textbox" class="text-box" readonly></textarea> -->
+        </select>
         <br><br>
         <h2>Choose your Shield:</h2>
+        <select name="shield" id="shield-menu">
+            <% shields.forEach(s => { %>
+             <option><%= s.name %></option>
+            <% }) %>
+        </select>
+        <!-- <textarea id="shield-textbox" class="text-box" readonly></textarea> -->
         <br><br>
         <h2>Choose your Armor:</h2>
+        <select name="armor" id="armor-menu">
+            <% armors.forEach(a => { %>
+             <option><%= a.name %> </option>
+             <% }) %>
+        </select>
+        <!-- <textarea id="armor-textbox" class="text-box" readonly></textarea> -->
+        <br><br><br><br>
         <button type="submit">Confirm Your Selection</button>
+    </form>
+        <script>
+           
+            const textBox = document.getElementById('console');
+            
+
+            const weapMenu = document.querySelector('#weap-menu');
+            const weapTT = document.getElementById('weap-textbox')
+            weapMenu.onchange = function() {
+                let w = document.getElementById('weap-menu').value;
+                weapTT.value += 'You selected: ' + w + '\n' + 'Attack Type: ' + w.attackType + '\n';
+            }
+    
+            function weapFunction() {
+                weapTT.value += name + '\n' + 'Attack Type: ' + attackType + '\n' +  'Damage Type: ' + damageType +
+                '\n' + 'Damage: ' + (magDam + physDam) + '\n' + 'Crit Chance: ' + crit + '%';
+            }
+            weapMenu.addEventListener('onchange', function(e) {
+                weaponChoice = e.target.innerText;
+                weapon = weaponChoice;
+                weapTT.value += weapon.name + '\n' + 'Attack Type: ' + weaponChoice.attackType + '\n' +  'Damage Type: ' + weaponChoice.damageType +
+                '\n' + 'Damage: ' + (weaponChoice.magDam + weaponChoice.physDam) + '\n' + 'Crit Chance: ' + weaponChoice.crit + '%';
+            });
+            const shieldMenu = document.querySelector('#shield-menu');
+            const shieldTT = document.getElementById('shield-textbox');
+            shieldMenu.addEventListener('onchange', function(e) {
+                shieldChoice = e.target.innerText;
+                shieldTT.value += shieldChoice.name + '\n' + 'Physical Defense: ' + shieldChoice.physRes + '\n' + 'Magical Defense: ' + shieldChoice.magRes +
+                '\n' + 'Roll Timer: ' + (shieldChoice.roll * 10) +'s';
+            });
+
+            const armorMenu = document.querySelector('#armor-menu');
+            const armorTT = document.getElementById('armor-textbox');
+            armorMenu.addEventListener('onchange', function(e) {
+                armorChoice = e.target.innerText;
+                armorTT.value += armorChoice.name + '\n' + 'Physical Defense: ' + armorChoice.physRes + '\n' + 'Magical Defense: ' + armorChoice.magRes +
+                '\n' + 'Dodge: ' + armorChoice.dodge + '%';
+            })
+        </script>
    
-</body>
-</html>
+<%- include('../partials/footer') %>

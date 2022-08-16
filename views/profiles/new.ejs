@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+    <h1>Here lies the New Profile Creation Page!</h1>
+    <br><br>
+    <h2>First, lets make sure you don't already have a profile!
+        <br>
+        <select>
+        <% profile.forEach(function(p) { %>
+            <option><%= p.name %></option>
+        </select>
+            <br>
+            <h3>Go to Profile Selected Below if You Have Created One</h3>
+            <form id="profile-show" action="/profiles/<%= p._id %>" method="GET">
+                <input type="submit" value="<%= p.name %>">
+            </form>
+        <% }) %>
+        
+    </h2>
+
+    <form id="create-profile" action="/profiles/new" method="POST">
+        <label>Name:</label>
+        <input type="text" name="name">
+        <input type="submit" value="Create Profile">
+    </form>
+
+
+<%- include('../partials/footer') %>

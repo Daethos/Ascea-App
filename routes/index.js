@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const Profile = require('../models/profile');
 
 // The root route renders our only view
 router.get('/', function(req, res) {
@@ -21,7 +22,9 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/profiles/:id/show', // UPDATE THIS, where do you want the client to go after you login 
+    successRedirect : '/profiles',
+    // `/profiles/${Profile._id}`, 
+    // UPDATE THIS, where do you want the client to go after you login 
     failureRedirect : '/profiles' //  UPDATE THIS, where do you want the client to go if login fails
   }
 ));

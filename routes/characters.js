@@ -4,6 +4,6 @@ const charCtrl = require('../controllers/characters');
 const isLoggedIn = require('../config/auth');
 
 router.get('/characters/new', charCtrl.new);
-router.post('/profiles/:id/characters', isLoggedIn, charCtrl.create);
+router.post('/characters/new', charCtrl.create);
 
 module.exports = router;
