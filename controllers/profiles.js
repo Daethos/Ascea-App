@@ -15,7 +15,7 @@ function show(req, res) {
     .populate('characters')
     .exec(function(err, profile) {
         console.log(profile, "<- show page")
-        Character.find({profile: profile._id}, function(err, characters) {
+        Character.find({}, function(err, characters) {
             console.log(characters, '<- characters')
             res.render('profiles/show', {
                 title: 'Profile Characters',
@@ -27,7 +27,8 @@ function show(req, res) {
     // res.render(`profiles/${Profile._id}`, {
     //     title: 'Profile Page',
     //     profile: profile
-        
+    // Character.find({profile: profile._id}, function(err, characters) {
+
     // });
 
 }
@@ -66,7 +67,7 @@ function create(req, res) {
         res.redirect(`/profiles/${profile._id}`, {
             title: 'Profile Characters',
             profile: profile,
-            characters: profile.characters
+            // characters: profile.characters
         });
     });
 }

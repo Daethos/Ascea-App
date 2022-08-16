@@ -1,9 +1,21 @@
 <%- include('../partials/header') %>
     
     <h1>Character Creation Page!</h1>
+    <br>
+    <h2>Hello, <%= profile.name %> </h2>
+    <br>
     <h2>Are you the next va'Esai?</h2>
     <br><br>
-    <form id="char-create" action="/characters/new" method="POST">
+    <h2>Characters Created</h2>
+    <form id="add-char-to-profile" action="/profiles/<%= profile._id %>/characters/new" method="POST">
+        <select name="characters" id="char-menu">
+            <% characters.forEach(c => { %>
+                <option value="<%= c._id %>"><%= c.name %> </option>
+            <% }) %>
+        </select>
+    </form>
+    <br><br> 
+    <form id="char-create" action="/profiles/<%= profile._id %>/characters/new" method="POST">
         <h2>Character Name:</h2>
         Character Name Here!<br>
         <input type="text" name="name"></input>
@@ -14,7 +26,7 @@
         <h2>Choose your Weapon:</h2>
         <select name="weapon" id="weap-menu">
             <% weapons.forEach(function(w) { %>
-                <option><%= w.name %><%= w._id %></option>
+                <option value="<%= w.id %>"><%= w.name %></option>
             <% }) %>
             <!-- <textarea id="weap-textbox" class="text-box" readonly></textarea> -->
         </select>
@@ -22,7 +34,7 @@
         <h2>Choose your Shield:</h2>
         <select name="shield" id="shield-menu">
             <% shields.forEach(s => { %>
-             <option><%= s.name %></option>
+             <option value="<%= s.id %>"><%= s.name %></option>
             <% }) %>
         </select>
         <!-- <textarea id="shield-textbox" class="text-box" readonly></textarea> -->
@@ -30,12 +42,12 @@
         <h2>Choose your Armor:</h2>
         <select name="armor" id="armor-menu">
             <% armors.forEach(a => { %>
-             <option><%= a.name %> </option>
+             <option value="<%= a.id %>"><%= a.name %> </option>
              <% }) %>
         </select>
         <!-- <textarea id="armor-textbox" class="text-box" readonly></textarea> -->
         <br><br><br><br>
-        <button type="submit">Confirm Your Selection</button>
+        <button type="submit">Create Character!</button>
     </form>
         <script>
            

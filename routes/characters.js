@@ -3,7 +3,8 @@ const router = express.Router();
 const charCtrl = require('../controllers/characters');
 const isLoggedIn = require('../config/auth');
 
-router.get('/characters/new', charCtrl.new);
-router.post('/characters/new', charCtrl.create);
+router.get('/profiles/:id/characters/new', charCtrl.new);
+router.post('/profiles/:id/characters/new', charCtrl.create);
+router.post('/profiles/:id/characters/new', charCtrl.addToProfile);
 
 module.exports = router;

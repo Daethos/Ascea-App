@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 // session middleware
 const session = require('express-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
 const charRouter = require('./routes/characters');
@@ -50,7 +51,8 @@ app.use(function (req, res, next) {
   // single ejs view
   next();
 });
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
 app.use('/', charRouter);

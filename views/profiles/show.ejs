@@ -4,7 +4,7 @@
     <h1>And this is the SHOW Page for Profiles</h1>
     <h2>Hello, <%= profile.name %> </h2>
         <a href="/logout">LOG OUT</a><br><br>
-        <form id="new-character" action="/characters/new" method="GET">
+        <form id="new-character" action="/profiles/<%= profile._id %>/characters/new" method="GET">
             <input type="submit" value="New Character!">
         </form>
         <h3>Select a Character From the Dropdown Menu Below!</h3>
@@ -21,7 +21,6 @@
                     <th>Weapon</th>
                     <th>Shield</th>
                     <th>Armor</th>
-                    <th>Build Data</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +29,6 @@
                     <td><%= c.weapon.name %> </td>
                     <td><%= c.shield.name %> </td>
                     <td><%= c.armor.name %> </td>
-                    <td><a href="/profiles/<%= Profile._id %> /<%= c._id %>"></a></td>
                  </tr>
                 <% }) %>
             </tbody>
