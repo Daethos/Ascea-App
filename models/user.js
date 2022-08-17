@@ -8,8 +8,7 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     email: String,
-    avatar: String,
-    profile: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile'}
+    avatar: String
     },
     {
     timestamps: true

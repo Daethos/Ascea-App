@@ -3,7 +3,7 @@ const Weapons = require('./models/weapon');
 const Shields = require('./models/shield');
 const Armors = require('./models/armor');
 
-mongoose.connect(`mongodb+srv://Daethos:8_pCXPeG$kyvN2n@cluster0.ivsipz0.mongodb.net/?retryWrites=true&w=majority`, 
+mongoose.connect(`mongodb+srv://Daethos:<password>@cluster0.ivsipz0.mongodb.net/?retryWrites=true&w=majority`, 
     {
     useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => {

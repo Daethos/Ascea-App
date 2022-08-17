@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { schema } = require('./user');
 
 const profileSchema = new mongoose.Schema(
     {
         name: {type: String, required: true, unique: true},
-        characters: [{type: Schema.Types.ObjectId, ref: 'Character'}]
+        user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        characters: [{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}]
     },
 );
 

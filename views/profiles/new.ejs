@@ -2,22 +2,17 @@
 
     <h1>Here lies the New Profile Creation Page!</h1>
     <br><br>
+    <a href="/logout">LOG OUT</a><br><br>
     <h2>First, lets make sure you don't already have a profile!
-        <br>
-        <select>
+    <br>
         <% profile.forEach(function(p) { %>
-            <option><%= p.name %></option>
-        </select>
-            <br>
-            <h3>Go to Profile Selected Below if You Have Created One</h3>
-            <form id="profile-show" action="/profiles/<%= p._id %>" method="GET">
-                <input type="submit" value="<%= p.name %>">
-            </form>
-        <% }) %>
-        
+    <br>
+        <a href="/profiles/<%= p._id %>">Go to Profile <%= p.name %> !</a>
+        <% }) %>  
+    <br><br>
     </h2>
-
-    <form id="create-profile" action="/profiles/new" method="POST">
+    <h2>All You Need is a Name for your Profile!</h2>
+    <form id="create-profile" action="/profiles" method="POST">
         <label>Name:</label>
         <input type="text" name="name">
         <input type="submit" value="Create Profile">

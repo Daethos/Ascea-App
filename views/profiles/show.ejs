@@ -4,19 +4,21 @@
     <h1>And this is the SHOW Page for Profiles</h1>
     <h2>Hello, <%= profile.name %> </h2>
         <a href="/logout">LOG OUT</a><br><br>
-        <form id="new-character" action="/profiles/<%= profile._id %>/characters/new" method="GET">
-            <input type="submit" value="New Character!">
-        </form>
+        <br>
+        <a href="/profiles/<%= profile._id %>/characters/new">Create Character!</a>
+        <br><br>
         <h3>Select a Character From the Dropdown Menu Below!</h3>
         <select>
             <% characters.forEach(function(c) { %>
                 <option><%= c.name %></option>
+                <% }) %>
             </select>
                 <br>
         <br><br>
         <table>
             <thead>
                 <tr>
+                    <th>Character Name</th>
                     <th>Build Description</th>
                     <th>Weapon</th>
                     <th>Shield</th>
@@ -25,10 +27,17 @@
             </thead>
             <tbody>
                  <tr>
+                    <% characters.forEach(function(c) { %>
                     <td><%= c.name %> </td>
-                    <td><%= c.weapon.name %> </td>
-                    <td><%= c.shield.name %> </td>
-                    <td><%= c.armor.name %> </td>
+                    <td><%= c.description %> </td>
+                    <td><%= c.weapon %> </td>
+                    <td><%= c.shield %> </td>
+                    <td><%= c.armor %> </td>
+                    <td>
+                        <form action="/profiles/<%= profile._id %>?_method=DELETE" method="POST">
+                            <button type="submit" value="Delete Character">Delete Character</button>
+                        </form>
+                    </td>
                  </tr>
                 <% }) %>
             </tbody>

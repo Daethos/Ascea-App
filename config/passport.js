@@ -20,7 +20,7 @@ passport.use(
 
       try {
         const newUser = await User.create({
-          name: profile.displaayName,
+          name: profile.displayName,
           googleId: profile.id,
           email: profile.emails[0].value,
           avatar: profile.photos[0].value
@@ -33,7 +33,8 @@ passport.use(
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user._id); // <-- This was given w/ user.id, I changed it to user._id, not sure if that's right
+  done(null, user.id);
+  // <-- This was given w/ user.id, I changed it to user._id, not sure if that's right
 });
 
 passport.deserializeUser(function(id, done) {
@@ -44,7 +45,6 @@ passport.deserializeUser(function(id, done) {
   // Find your User, using your model, and then call done(err, whateverYourUserIsCalled)
   // When you call this done function passport assigns the user document to req.user, which will 
   // be availible in every Single controller function, so you always know the logged in user
-
 });
 
 

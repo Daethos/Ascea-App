@@ -2,20 +2,19 @@
 
     <h1>Landing Page for Login / Profile Creation!</h1>
     <br><br>
-    <% if(user) { %>
-    <a href="/logout">LOG OUT</a><br><br>
-       <% if(user.profile === false) { %>
+    <% if (user) { %>
+    <a href="/logout">LOG OUT</a>
+    <br><br><br>
         <form id="make-profile" action="/profiles/new" method="GET">
             <input type="submit" value="Make Profile">
         </form>
-    <!-- <a href="/profiles/new" class="new-char">Make Profile!</a> -->
-        <% } else if (user.profile === true) { %>
-    <a href="`/profiles/${profile._id}`" class="profile-show">Go To Profile!</a>
-            <% } %>
     <% } else { %>
+    
+    <!-- <a href="/profiles/new" class="new-char">Make Profile!</a> -->
+    <!-- <a href="/profiles/${profile._id}" class="profile-show">Go To Profile!</a> -->
     <br><br>
     <a href="/auth/google" class="login">LOG IN</a>
     <br><br>
-    <% }  %>
+    <% } %>
 
 <%- include('../partials/footer') %>
