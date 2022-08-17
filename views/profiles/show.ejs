@@ -1,48 +1,52 @@
 <%- include('../partials/header') %>
 
-    <section id="profile-show-page">
+<section id="profile-show-page">
     <h1>And this is the SHOW Page for Profiles</h1>
+        
     <h2>Hello, <%= profile.name %> </h2>
-        <a href="/logout">LOG OUT</a><br><br>
-        <br>
-        <a href="/profiles/<%= profile._id %>/characters/new">Create Character!</a>
-        <br><br>
-        <h3>Select a Character From the Dropdown Menu Below!</h3>
-        <select>
+    <a href="/logout">LOG OUT</a><br><br>
+    <br>
+    
+    <a href="/profiles/<%= profile._id %>/characters/new">Create Character!</a>
+    
+    <br><br>
+    
+    <br><br>
+    <h3>Select a Character From the Dropdown Menu Below!</h3>
+    <select>
+        <% characters.forEach(function(c) { %>
+            <option><%= c.name %></option>
+        <% }) %>
+    </select>
+    <br><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Character Name</th>
+                <th>Build Description</th>
+                <th>Weapon</th>
+                <th>Shield</th>
+                <th>Armor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
             <% characters.forEach(function(c) { %>
-                <option><%= c.name %></option>
-                <% }) %>
-            </select>
-                <br>
-        <br><br>
-        <table>
-            <thead>
-                <tr>
-                    <th>Character Name</th>
-                    <th>Build Description</th>
-                    <th>Weapon</th>
-                    <th>Shield</th>
-                    <th>Armor</th>
-                </tr>
-            </thead>
-            <tbody>
-                 <tr>
-                    <% characters.forEach(function(c) { %>
-                    <td><%= c.name %> </td>
-                    <td><%= c.description %> </td>
-                    <td><%= c.weapon %> </td>
-                    <td><%= c.shield %> </td>
-                    <td><%= c.armor %> </td>
-                    <td>
-                        <form action="/profiles/<%= profile._id %>?_method=DELETE" method="POST">
-                            <button type="submit" value="Delete Character">Delete Character</button>
-                        </form>
-                    </td>
-                 </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    </section>
+                <td><%= c.name %> </td>
+                <td><%= c.description %> </td>
+                <td><%= c.weapon %> </td>
+                <td><%= c.shield %> </td>
+                <td><%= c.armor %> </td>
+                <td>
+    <form action="/profiles/<%= profile._id %>?_method=DELETE" method="POST">
+        <button type="submit" value="Delete Character">Delete Character</button>
+    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</section>
 
 
 <%- include('../partials/footer') %>

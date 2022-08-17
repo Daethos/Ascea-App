@@ -9,8 +9,8 @@ const charSchema = new Schema(
         description: String,
         weapon: {type: Schema.Types.ObjectId, ref: 'Weapons', required: true},
         shield: {type: Schema.Types.ObjectId, ref: 'Shields', required: true},
-        armor: {type: Schema.Types.ObjectId, ref: 'Armors', required: true}
-        // profile: {type: Schema.Types.ObjectId, ref: 'Profile'}
+        armor: {type: Schema.Types.ObjectId, ref: 'Armors', required: true},
+        user: {type: Schema.Types.ObjectId, ref: 'User'}
     },
     {
         timestamps: true,

@@ -34,6 +34,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // mount the session middleware
 app.use(session({
   secret: process.env.SECRET,
@@ -52,8 +54,7 @@ app.use(function (req, res, next) {
   // single ejs view
   next();
 });
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
 app.use('/', charRouter);

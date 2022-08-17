@@ -15,12 +15,12 @@ module.exports = {
 async function deleteCharacter(req, res) {
     try {
         const profileDoc = await Profile.findOne({
-            'characters._id': req.params.id
+            'characters': req.params.id
         });
-        if(profileDoc) return res.redirect(`/profiles/${Profile._id}`);
+        if(profileDoc) return res.redirect(`/profiles/${profileDoc._id}`);
         profileDoc.characters.remove(req.params.id);
         await profileDoc.save();
-        res.redirect(`/profiles/${Profile._id}`);
+        res.redirect(`/profiles/${profileDoc._id}`);
 
     } catch(err) {
         res.send(err)
@@ -48,12 +48,14 @@ function newChar(req, res) {
     });
 }
 function addToProfile(req, res) {
-    // Profile.findById(req.params.id, function(err, profile) {
-    //     profile.characters.push(req.body.charactersId);
-    //     profile.save(function(err) {
-    //         res.redirect(`/profiles/${req.params.id}`)
-    //     });
-    // });
+    Profile.findById(req.params.id, function(err, profile) {
+        console.log(req.params.id, "<-Profile ID in addToProfile")
+        profile.characters.push(req.body.characterId);
+        console.log(profile.characters, "<- Character ID pushed into Profile.Character Array")
+        profile.save(function(err) {
+            res.redirect(`/profiles/${req.params.id}`)
+        });
+    });
 }
 
 function create(req, res) {

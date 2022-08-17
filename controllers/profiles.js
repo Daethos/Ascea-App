@@ -5,6 +5,7 @@ const User = require('../models/user');
 const Weapon = require('../models/weapon');
 const Shield = require('../models/shield');
 const Armor = require('../models/armor');
+const { unsubscribe } = require('../routes');
 // const characters = require('./characters');
 
 module.exports = {
@@ -16,11 +17,10 @@ module.exports = {
 
 function show(req, res) {
     Profile.findById(req.params.id)
-    .find({characters: Character._id})
-    .populate('characters')
+    // .populate('characters')
     .exec(function(err, profile) {
         console.log(profile, "<- show page")
-        Character.find({})
+        Character.find({_id: {$in: profile.characters}})
         .populate('weapon', '-_id -imgURL -__v')
         .populate('shield', '-_id -imgURL -__v')
         .populate('armor', '-_id -imgURLTop -imgURLMid -imgURLBot -__v')
@@ -28,8 +28,8 @@ function show(req, res) {
             // console.log(characters, '<- characters')
             res.render('profiles/show', {
                 title: 'Profile Characters',
-                profile: profile,
-                characters: characters
+                profile,
+                characters
             })
         })
     })
@@ -42,14 +42,6 @@ function show(req, res) {
 
 }
 function index(req, res) {
-    // Character.find({}, function(err, allChar) {
-    //     console.log(allChar, "<- All Characters Created!");
-    //     if(err) {
-    //         res.send('You have an error trying to find the characters, check the terminal');
-    //     }
-    //     res.render('characters/index.ejs');
-    //         characters: allChar
-    // })
     Profile.find({}, function(err, profile) {
         
         if(err) {
@@ -96,10 +88,14 @@ function create(req, res) {
 
 
 function newProfile(req, res) {
-    Profile.find({}, function(err, profile) {
-        res.render('profiles/new.ejs', {
-            title: 'Create Profile',
-            profile
-        });
-    })
-}
+    // User.findById(req.params.id, function(err, user) {
+        Profile.find({}, function(err, profile) {
+            res.render('profiles/new.ejs', {
+                title: 'Create Profile',
+                // user,
+                profile
+            });
+        })
+    }
+//     )
+// }

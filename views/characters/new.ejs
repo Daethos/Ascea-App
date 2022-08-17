@@ -8,13 +8,13 @@
     <br><br>
     <h2>Characters Created</h2>
     <form id="add-char-to-profile" action="/profiles/<%= profile._id %>" method="POST">
-        <select name="characters" id="char-menu">
-            <% characters.forEach(c => { %>
-                <option value="<%= c._id %>"><%= c.name %> </option>
-            <% }) %>
-        </select>
-        <input type="submit" value="Add To Profile">
-    </form>
+        <select name="characterId">
+            <%- characters.map(c => 
+              `<option value="${c._id}">${c.name}</option>`
+            ).join('') %>
+          </select>
+          <button type="submit">Add to Profile</button>
+        </form>
     <br><br> 
     <form id="char-create" action="/profiles/<%= profile._id %>/characters/new" method="POST">
         <h2>Character Name:</h2>
