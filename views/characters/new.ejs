@@ -16,6 +16,9 @@
           <button type="submit">Add to Profile</button>
         </form>
     <br><br> 
+    <br>
+        <a href="/profiles/<%= profile._id %>">Go back to Profile <%= profile.name %> !</a>
+    <br><br>
     <form id="char-create" action="/profiles/<%= profile._id %>/characters/new" method="POST">
         <h2>Character Name:</h2>
         Character Name Here!<br>

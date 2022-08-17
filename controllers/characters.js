@@ -12,20 +12,50 @@ module.exports = {
     delete: deleteCharacter
 }
 
-async function deleteCharacter(req, res) {
-    try {
-        const profileDoc = await Profile.findOne({
-            'characters': req.params.id
-        });
-        if(profileDoc) return res.redirect(`/profiles/${profileDoc._id}`);
-        profileDoc.characters.remove(req.params.id);
-        await profileDoc.save();
-        res.redirect(`/profiles/${profileDoc._id}`);
+// async function deleteCharacter(req, res) {
 
-    } catch(err) {
-        res.send(err)
-    }
+//     try {
+//         Character.findById(req.params.id, function (err, characters) {
+//             characters.remove(req.params.id);
+            
+//         })
+//         await characters.save();
+//             res.redirect(`/profiles`)
+//     // try {
+//     //     const profileDoc = await Profile.findOne({
+//     //         'characters._id': req.params.id,
+//     //         'characters.user': req.user._id
+//     //     });
+//     //     if(profileDoc) return res.redirect(`/profiles/${profileDoc._id}`);
+//     //     profileDoc.characters.remove(req.params.id);
+//     //     await profileDoc.save();
+//     //     res.redirect(`/profiles/${profileDoc._id}`);
+
+//     } catch(err) {
+//         res.send(err)
+//     }
+// }
+function deleteCharacter(req, res) {
+    Character.findOneAndDelete(
+        // Ensure that the Character was created by the logged in user
+        {_id: req. params.id, user: req.user._id}, function(err) {
+            // Deleted Book, so redirecting back to Profile Page
+            res.redirect(`/profiles/${Profile._id}`);
+        }
+    )
 }
+
+// function deleteCharacter(req, res) {
+//     Profile.findOne({characters: charID}, function(err, profile) {
+//         console.log(charID, "<- Character to Delete")
+//         if (err) {
+//             res.send(err)
+//         }
+//         profile.characters.remove(charID);
+//         profile.save();
+//         res.redirect(`/profiles/${profile._id}`);
+//     })
+// }
 
 function newChar(req, res) {
     Profile.findById(req.params.id, function(err, profile) {

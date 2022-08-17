@@ -39,7 +39,7 @@
                 <td><%= c.armor %> </td>
                 <td>
     <form action="/profiles/<%= profile._id %>?_method=DELETE" method="POST">
-        <button type="submit" value="Delete Character">Delete Character</button>
+        <button id="charID" type="submit" value="<%= c._id %>">Delete Character</button>
     </form>
                 </td>
             </tr>
