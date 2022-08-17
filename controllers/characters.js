@@ -13,34 +13,42 @@ module.exports = {
 }
 
 // async function deleteCharacter(req, res) {
-
 //     try {
-//         Character.findById(req.params.id, function (err, characters) {
-//             characters.remove(req.params.id);
+//         const profileDocument = await Profile.find({
+//             'characters._id': req.user._id,
+//             'characters.user': req.user._id
+//         });
+//         if(profileDocument) return res.redirect(`/profiles/${profileDocument._id}`)
+
+//         profileDocument.characters.remove(req.params.id);
+//         await profileDocument.save();
+//         res.redirect(`/profiles/${profileDocument._id}`);
+
+//         // Character.findById(req.params.id, function (err, characters) {
+//         //     characters.remove(req.params.id);
             
-//         })
-//         await characters.save();
-//             res.redirect(`/profiles`)
-//     // try {
-//     //     const profileDoc = await Profile.findOne({
-//     //         'characters._id': req.params.id,
-//     //         'characters.user': req.user._id
-//     //     });
-//     //     if(profileDoc) return res.redirect(`/profiles/${profileDoc._id}`);
-//     //     profileDoc.characters.remove(req.params.id);
-//     //     await profileDoc.save();
-//     //     res.redirect(`/profiles/${profileDoc._id}`);
+//         // })
+//         // await characters.save();
+//         //     res.redirect(`/profiles`)
 
 //     } catch(err) {
 //         res.send(err)
 //     }
 // }
 function deleteCharacter(req, res) {
-    Character.findOneAndDelete(
+    Profile.findOne(
         // Ensure that the Character was created by the logged in user
-        {_id: req. params.id, user: req.user._id}, function(err) {
-            // Deleted Book, so redirecting back to Profile Page
-            res.redirect(`/profiles/${Profile._id}`);
+        {characters: req.params.id}, function(err, profile) {
+            if (err) return res.redirect(`/profiles/${profile._id}`);
+            // Getting rid of that darn character!
+            profile.characters.remove(req.params.id);
+            // Character.delete(req.params.id);
+            profile.save(function(err) {
+                Character.findOneAndDelete({_id: req.params.id, user: req.user._id}, function(err) {
+                    res.redirect(`/profiles/${profile._id}`);
+                })
+                // res.redirect(`/profiles/${profile._id}`);
+            })
         }
     )
 }
@@ -94,6 +102,7 @@ function create(req, res) {
         Character.weapon = req.body.weapon._id;
         Character.shield = req.body.shield._id;
         Character.armor = req.body.armor._id;
+        req.body.user = req.user._id;
         Character.create(req.body, function(err, characters) {
             console.log(characters, '<- Damn, look at that BEAST!');
             // const charArr = this.characters;
