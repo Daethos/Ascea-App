@@ -1,26 +1,62 @@
 <%- include('../partials/header', locals) %>
 
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">Ascean va'Esai</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle disabled" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown Menu
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/profiles/<%= profile._id %>">Profile</a></li>
+              <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="btn btn-outline-danger" href="/logout">Logout</a>
+        </div>
+      </nav>
+  </nav>
 
-    <h1>Here lies the New Profile Creation Page!</h1>
-    <br><br>
-    <a href="/logout">LOG OUT</a><br><br>
-    <h2>First, lets make sure you don't already have a profile!
-    <br>
+
+<div class="col-8 offset-2 bg-light p1 border text-center">
+
+    <div class="col-10 bg-white text-center offset-1 p-2 mt-5 border">
+    <h2>Profile Finder And Creator!</h2>
+    </div>
+    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
+    <h5>Firstly, Do You Possess A Profile?</h5>
+    </div>
+    <div class="col-10 bg-white text-Center offset-1 p-2 border">
         <% profile.forEach(function(p) { %>
-    <br>
-        <a href="/profiles/<%= p._id %>">Go to your profile: <%= p.name %> !</a>
-        <br><br>
-   
+        <a class="btn btn-outline-primary btn-large" href="/profiles/<%= p._id %>">Go to Your Profile Named: <%= p.name %> !</a>
         <% }) %>  
-    <br><br>
-   <br><br>
-    </h2>
-    <h2>All You Need is a Name for your Profile!</h2>
+    </div>
+
     <form id="create-profile" action="/profiles" method="POST">
-        <label>Name:</label>
-        <input type="text" name="name">
-        <input type="submit" value="Create Profile">
+        
+        <div class="form-floating text-start col-10 offset-1 mt-5">
+            <textarea class="form-control" name="name" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">Create Profile Name</label>
+          </div>
+        <input class="btn btn-outline-success btn-lg my-4" type="submit" value="Create Profile">
     </form>
 
+</div>
 
 <%- include('../partials/footer') %>

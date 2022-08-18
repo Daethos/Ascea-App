@@ -16,12 +16,11 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
+              Profile Menu
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>"><%= profile.name %> </a></li>
+                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a></li>
             </ul>
           </li>
         </ul>
@@ -33,18 +32,24 @@
         </div>
       </nav>
   </nav>
-<div class="container">
-<section id="profile-show-page">
-    <h2>Greetings, <%= profile.name %>!</h2>
+
+<div class="container text-center">
+<div class="col-8 offset-2 bg-light p1 border">
+
+
+    <h1>Greetings, <%= profile.name %>!</h1>
     
-    <br><br>
-    <h3>Select a Character From the Dropdown Menu Below!</h3>
-    <select>
+    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
+    <h5>Select a Character From the Dropdown Menu Below!</h5>
+    </div>
+    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
+    <select class="btn btn-outline-dark">
         <% characters.forEach(function(c) { %>
             <option><%= c.name %></option>
         <% }) %>
     </select>
-    <br><br><br>
+    </div>
+    
     <table>
         <thead>
             <tr>
@@ -65,13 +70,13 @@
                 <td><%= c.armor.name %></td>
                 <td>
                     <form action="/characters/<%= c._id %>" method="GET">
-                        <button id="remChar" type="submit">Remove Character</button>
+                        <button class="btn btn-outline-dark btn-sm" id="remChar" type="submit">Remove Character</button>
                     </form>
                 </td>
                 <td>
                     <% if (user?._id.equals(c.user)) { %>
     <form action="/characters/<%= c._id %>?_method=DELETE" method="POST">
-        <button id="charID" type="submit">Delete Character</button>
+        <button class="btn btn-outline-danger btn-sm" id="charID" type="submit">Delete Character</button>
     </form>
             <% } %>
                 </td>
@@ -79,7 +84,9 @@
             <% }) %>
         </tbody>
     </table>
-</section>
+
+
+</div>
 </div>
 
 <script>

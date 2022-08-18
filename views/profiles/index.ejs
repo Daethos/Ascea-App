@@ -1,20 +1,58 @@
 <%- include('../partials/header', locals) %>
 
-    <h1>Landing Page for Login / Profile Creation!</h1>
-    <br><br>
-    <% if (user) { %>
-    <a href="/logout">LOG OUT</a>
-    <br><br><br>
-        <form id="make-profile" action="/profiles/new" method="GET">
-            <input type="submit" value="Make Profile">
-        </form>
-    <% } else { %>
-    
-    <!-- <a href="/profiles/new" class="new-char">Make Profile!</a> -->
-    <!-- <a href="/profiles/${profile._id}" class="profile-show">Go To Profile!</a> -->
-    <br><br>
-    <a href="/auth/google" class="login">LOG IN</a>
-    <br><br>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">Ascean va'Esai</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle disabled" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown Menu
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/profiles/<%= profile._id %>">Profile</a></li>
+              <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="btn btn-outline-danger" href="/logout">Logout</a>
+        </div>
+      </nav>
+  </nav>
+
+<div class="col-8 offset-2 bg-light p1 border">
+    <% if (!user) { %>
+<div class="col-10 bg-white text-start offset-1 p-2 mt-5 border">
+    <!-- <a class="btn btn-outline-danger btn-lg my-5" href="/logout">LOG OUT</a> -->
+    <h2>Login Here:</h2>
+</div>
+<div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
+    <a class="btn btn-outline-success btn-lg my-3" href="/auth/google" class="login">LOG IN</a>
+</div>
+<% } else { %>
+<div class="col-10 bg-white text-start offset-1 p-2 mt-5 border">
+    <h2>Create Profile:</h2>
+    </div>
+    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
+    <form id="make-profile" action="/profiles/new" method="GET">
+        <input class="btn btn-outline-dark btn-lg my-5" type="submit" value="Create Profile!">
+    </form>
+   
+    </div>
     <% } %>
+</div>
 
 <%- include('../partials/footer') %>

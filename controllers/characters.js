@@ -26,7 +26,6 @@ function deleteCharacter(req, res) {
                 Character.findOneAndDelete({_id: req.params.id, user: req.user._id}, function(err) {
                     res.redirect(`/profiles/${profile._id}`);
                 })
-                // res.redirect(`/profiles/${profile._id}`);
             })
         }
     )
@@ -39,10 +38,10 @@ function removeCharacter(req, res) {
             if (err) return res.redirect(`/profiles/${profile._id}`);
             // Getting rid of that darn character!
             profile.characters.remove(req.params.id);
-            // Character.delete(req.params.id);
+         
             profile.save(function(err) {
                     res.redirect(`/profiles/${profile._id}`);
-                // res.redirect(`/profiles/${profile._id}`);
+      
             })
         }
     )
@@ -89,7 +88,7 @@ function create(req, res) {
         req.body.user = req.user._id;
         Character.create(req.body, function(err, characters) {
             console.log(characters, '<- Damn, look at that BEAST!');
-            // const charArr = this.characters;
+           
             if(err) {
                 console.log(err, '<- Error in Character Creation!');
                 return res.render('characters/new');
