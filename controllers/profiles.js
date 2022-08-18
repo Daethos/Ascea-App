@@ -30,17 +30,11 @@ function show(req, res) {
                 title: 'Profile Characters',
                 profile,
                 characters
-            })
-        })
-    })
-    // res.render(`profiles/${Profile._id}`, {
-    //     title: 'Profile Page',
-    //     profile: profile
-    // Character.find({profile: profile._id}, function(err, characters) {
-
-    // });
-
+            });
+        });
+    });
 }
+
 function index(req, res) {
     Profile.find({}, function(err, profile) {
         
@@ -56,26 +50,11 @@ function index(req, res) {
         });
         }
     });
-    // if (Profile.user === true) {
-    //     res.render(`profiles/${Profile._id}`)
-    // } else {
-        // Profile.find({}, function(err, profile) {
-        //     res.render('profiles/new.ejs', {
-        //         title: 'Create Profile',
-        //         profile
-        //     });
-        // })
-}
 
-
-    // res.render('profiles/index.ejs');        
-
+}  
 
 function create(req, res) {
     req.body.user = req.user._id;
-    // console.log(req.user, "<- Req.user!")
-    // console.log(req.body, "Did this add the user?");
-    // console.log(req.params.id, "<- Profile ID Created")
     Profile.create(req.body, function(err, profile) {
         if(err) {
             console.log(err, '<- Error in Profile Creation')
@@ -95,7 +74,7 @@ function newProfile(req, res) {
                 // user,
                 profile
             });
-        })
+        });
     }
 //     )
 // }

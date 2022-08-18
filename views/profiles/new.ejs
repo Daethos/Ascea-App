@@ -33,6 +33,7 @@
       </nav>
   </nav>
 
+  <div class="container">
 
 <div class="col-8 offset-2 bg-light p1 border text-center">
 
@@ -42,12 +43,15 @@
     <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
     <h5>Firstly, Do You Possess A Profile?</h5>
     </div>
+    
     <div class="col-10 bg-white text-Center offset-1 p-2 border">
         <% profile.forEach(function(p) { %>
+         
         <a class="btn btn-outline-primary btn-large" href="/profiles/<%= p._id %>">Go to Your Profile Named: <%= p.name %> !</a>
+     
         <% }) %>  
     </div>
-
+    
     <form id="create-profile" action="/profiles" method="POST">
         
         <div class="form-floating text-start col-10 offset-1 mt-5">
@@ -57,6 +61,7 @@
         <input class="btn btn-outline-success btn-lg my-4" type="submit" value="Create Profile">
     </form>
 
+</div>
 </div>
 
 <%- include('../partials/footer') %>

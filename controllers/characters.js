@@ -10,8 +10,25 @@ module.exports = {
     create,
     addToProfile,
     delete: deleteCharacter,
-    edit: removeCharacter
+    update: removeCharacter,
+    show
 }
+
+function show(req, res) {
+    Character.findById(req.params.id)
+        .populate('weapon', '-_id -imgURL -__v')
+        .populate('shield', '-_id -imgURL -__v')
+        .populate('armor', '-_id -imgURLTop -imgURLMid -imgURLBot -__v')
+        .exec(function(err, characters) {
+            // console.log(characters, '<- characters')
+            res.render('characters/show', {
+                title: 'Character Stat Page',
+                profile,
+                characters
+            })
+        })
+    }
+
 
 
 function deleteCharacter(req, res) {

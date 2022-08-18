@@ -12,7 +12,7 @@
             <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile._name%></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profiles/<%= profile._id %>/characters/new">New Character</a>
+            <a class="nav-link" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,18 +36,69 @@
 <div class="container text-center">
 <div class="col-8 offset-2 bg-light p1 border">
 
-
+  <div class="col-10 bg-white text-center offset-1 p-2 mt-4 border">
     <h1>Greetings, <%= profile.name %>!</h1>
+  </div>
     
     <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
-    <h5>Select a Character From the Dropdown Menu Below!</h5>
+    <h5>Select a Character From the Menu!</h5>
     </div>
+
+
     <div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
     <select class="btn btn-outline-dark">
         <% characters.forEach(function(c) { %>
             <option><%= c.name %></option>
         <% }) %>
     </select>
+    </div>
+
+    <div class="col-10 bg-white text-center offset-1 p-2 my-4 border">
+    <p>
+      <button class="btn btn-outline-info btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Ascean va'Esai Competitors
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <table class="table table-hover table-bordered border-info">
+          <thead>
+            <tr>
+                <th>Character Name</th>
+                <th>Build Description</th>
+                <th>Weapon</th>
+                <th>Shield</th>
+                <th>Armor</th>
+                <th>Remove!</th>
+                <th>Delete?!</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <% characters.forEach(function(c) { %>
+                <td><a href="/characters/<%= c._id %>"><%= c.name %></a></td>
+                <td><%= c.description %></td>
+                <td><%= c.weapon.name %></td>
+                <td><%= c.shield.name %></td>
+                <td><%= c.armor.name %></td>
+                <td>
+                    <form action="/characters/<%= c._id %>?_method=PUT" method="POST">
+                        <button class="btn btn-outline-dark btn-sm" id="remChar" type="submit">Remove Character</button>
+                    </form>
+                </td>
+                <td>
+                    <% if (user?._id.equals(c.user)) { %>
+    <form action="/characters/<%= c._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-outline-danger btn-sm" id="charID" type="submit">Delete Character</button>
+    </form>
+            <% } %>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+        </table>
+      </div>
+    </div>
     </div>
     
     <table>
@@ -69,7 +120,7 @@
                 <td><%= c.shield.name %></td>
                 <td><%= c.armor.name %></td>
                 <td>
-                    <form action="/characters/<%= c._id %>" method="GET">
+                    <form action="/characters/<%= c._id %>?_method=PUT" method="POST">
                         <button class="btn btn-outline-dark btn-sm" id="remChar" type="submit">Remove Character</button>
                     </form>
                 </td>
