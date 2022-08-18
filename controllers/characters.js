@@ -9,32 +9,11 @@ module.exports = {
     new: newChar,
     create,
     addToProfile,
-    delete: deleteCharacter
+    delete: deleteCharacter,
+    edit: removeCharacter
 }
 
-// async function deleteCharacter(req, res) {
-//     try {
-//         const profileDocument = await Profile.find({
-//             'characters._id': req.user._id,
-//             'characters.user': req.user._id
-//         });
-//         if(profileDocument) return res.redirect(`/profiles/${profileDocument._id}`)
 
-//         profileDocument.characters.remove(req.params.id);
-//         await profileDocument.save();
-//         res.redirect(`/profiles/${profileDocument._id}`);
-
-//         // Character.findById(req.params.id, function (err, characters) {
-//         //     characters.remove(req.params.id);
-            
-//         // })
-//         // await characters.save();
-//         //     res.redirect(`/profiles`)
-
-//     } catch(err) {
-//         res.send(err)
-//     }
-// }
 function deleteCharacter(req, res) {
     Profile.findOne(
         // Ensure that the Character was created by the logged in user
@@ -53,17 +32,22 @@ function deleteCharacter(req, res) {
     )
 }
 
-// function deleteCharacter(req, res) {
-//     Profile.findOne({characters: charID}, function(err, profile) {
-//         console.log(charID, "<- Character to Delete")
-//         if (err) {
-//             res.send(err)
-//         }
-//         profile.characters.remove(charID);
-//         profile.save();
-//         res.redirect(`/profiles/${profile._id}`);
-//     })
-// }
+function removeCharacter(req, res) {
+    Profile.findOne(
+        // Ensure that the Character was created by the logged in user
+        {characters: req.params.id}, function(err, profile) {
+            if (err) return res.redirect(`/profiles/${profile._id}`);
+            // Getting rid of that darn character!
+            profile.characters.remove(req.params.id);
+            // Character.delete(req.params.id);
+            profile.save(function(err) {
+                    res.redirect(`/profiles/${profile._id}`);
+                // res.redirect(`/profiles/${profile._id}`);
+            })
+        }
+    )
+}
+
 
 function newChar(req, res) {
     Profile.findById(req.params.id, function(err, profile) {
