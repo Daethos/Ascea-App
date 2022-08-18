@@ -42,12 +42,12 @@
     <h2>Characters Created</h2>
     <form id="add-char-to-profile" action="/profiles/<%= profile._id %>" method="POST">
         
-        <select name="characterId">
+        <select class="btn btn-outline-dark" name="characterId">
             <%- characters.map(c => 
               `<option value="${c._id}">${c.name}</option>`
             ).join('') %>
           </select>
-          <button type="submit">Add to Profile</button>
+          <button class="btn btn-outline-success" type="submit">Add to Profile</button>
         
     </form>
 </div>
@@ -61,7 +61,7 @@
         <input type="text" name="name"></input>
     </div>
     <div class="col-5 text-end">
-        <button type="submit">Create Character!</button>
+        <button class="btn btn-outline-success" type="submit">Create Character!</button>
         </div>
     
     </div>
@@ -73,12 +73,12 @@
             <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
             <label for="floatingTextarea">WARNING: No Profanity Filter!</label>
           </div>
-    
-
-        <div class="col-10 bg-white text-center offset-1 p-1 mt-4 border">
+          <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
+          <h5>Weapon Selection:</h5>
+          </div>
+        <div class="col-10 bg-white text-center offset-1 p-4 border">
             <div class="mb-4">
-        <h2>Choose your Weapon:</h2>
-        <select name="weapon" id="weap-menu">
+        <select class="btn btn-outline-primary" name="weapon" id="weap-menu">
             <% weapons.forEach(function(w) { %>
                 <option value="<%= w.id %>"><%= w.name %></option>
             <% }) %>
@@ -337,10 +337,11 @@
         </button>
 </div>
 
-<br><br>
+<div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
+    <h5>Shield Selection:</h5>
+    </div>
 <div class="col-10 bg-white text-center offset-1 p-4 border">
-        <h2>Choose your Shield:</h2>
-        <select name="shield" id="shield-menu">
+        <select class="btn btn-outline-primary" name="shield" id="shield-menu">
             <% shields.forEach(s => { %>
              <option value="<%= s.id %>"><%= s.name %></option>
             <% }) %>
@@ -383,11 +384,12 @@
         Pavise
         </button>
 </div>
-        <br><br>
-<div class="col-10 bg-white text-center offset-1 p-2 mb-5 border">
+<div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
+    <h5>Armor Selection:</h5>
+    </div>
+<div class="col-10 bg-white text-center offset-1 p-4 mb-5 border">
         <p>
-            <h2>Choose your Armor:</h2>
-            <select name="armor" id="armor-menu">
+            <select class="btn btn-outline-primary" name="armor" id="armor-menu">
             <% armors.forEach(a => { %>
                 <option value="<%= a.id %>"><%= a.name %></option>
                 <% }) %>
