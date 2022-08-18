@@ -35,7 +35,135 @@
 
   <div class="container">
     <div class="col-8 offset-2 bg-light p1 border text-center">
-        <h3>Character Show Page!</h3>
+        <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
+        <h3><%= characters.name %> </h3>
+        </div>
+
+        <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
+            <table class="table table-hover table-bordered border-info">
+                <thead>
+                  <tr>
+                      <th>Build Description</th>
+                      <th>Weapon</th>
+                      <th>Shield</th>
+                      <th>Armor</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><%= characters.description %></td>
+                      <td><%= characters.weapon.name %></td>
+                      <td><%= characters.shield.name %></td>
+                      <td><%= characters.armor.name %></td>
+              </tbody>
+              </table>
+        </div>
+        <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
+            <table class="table table-hover table-bordered border-info">
+                <thead>
+                  <tr>
+                      <th>Weapon Name</th>
+                      <th>Grip Style</th>
+                      <th>Attack Type</th>
+                      <th>Damage Type</th>
+                      <th>Physical Damage</th>
+                      <th>Magic Damage</th>
+                      <th>Crit Chance</th>
+                      <th>Weapon Icon</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><%= characters.weapon.name %></td>
+                      <td><%= characters.weapon.grip %></td>
+                      <td><%= characters.weapon.attackType %></td>
+                      <td><%= characters.weapon.damageType %></td>
+                      <td><%= characters.weapon.physDam %> </td>
+                      <td><%= characters.weapon.magDam %> </td>
+                      <td>+<%= characters.weapon.crit %>%</td>
+                      <td><img src="<%= characters.weapon.imgURL %>"></td>
+                 </tr>
+                 
+              </tbody>
+              </table>
+              <table class="table table-hover table-bordered border-info">
+                <thead>
+                  <tr>
+                      <th>Shield Name</th>
+                      <th>Physical Defense</th>
+                      <th>Magic Defense</th>
+                      <th>Roll Timer</th>
+                      <th>Shield Icon</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><%= characters.shield.name %></td>
+                      <td><%= characters.shield.physRes %>%</td>
+                      <td><%= characters.shield.magRes %>%</td>
+                      <td><%= characters.shield.roll %>s</td>
+                      <td><img src="<%= characters.shield.imgURL %>"></td>
+                 </tr>
+              </tbody>
+              </table>
+              <table class="table table-hover table-bordered border-info">
+                <thead>
+                  <tr>
+                      <th>Armor Name</th>
+                      <th>Physical Defense</th>
+                      <th>Magic Defense</th>
+                      <th>Dodge Chance</th>
+                      <th>Helm</th>
+                      <th>Chest</th>
+                      <th>Legs</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><%= characters.armor.name %></td>
+                      <td><%= characters.armor.physRes %>%</td>
+                      <td><%= characters.armor.magRes %>%</td>
+                      <td><%= characters.armor.dodge %>%</td>
+                      <td><img src="<%= characters.armor.imgURLTop %>"></td>
+                      <td><img src="<%= characters.armor.imgURLMid %>"></td>
+                      <td><img src="<%= characters.armor.imgURLBot %>"></td>
+                 </tr>
+              </tbody>
+              </table>
+
+
+
+
+
+
+
+              <table class="table table-hover table-bordered border-info">
+                <thead>
+                  <tr>
+                      <th></th>
+                      <th>Plate Def</th>
+                      <th>Chain Def</th>
+                      <th>Leather Def</th>
+                      <th>Cloth Def</th>
+                      <th>Magic Damage</th>
+                      <th>Crit Chance</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><%= characters.weapon.name %></td>
+                      <td><%= characters.weapon.grip %></td>
+                      <td><%= characters.weapon.attackType %></td>
+                      <td><%= characters.weapon.damageType %></td>
+                      <td><%= characters.weapon.physDam %> </td>
+                      <td><%= characters.weapon.magDam %> </td>
+                      <td>+<%= characters.weapon.crit %>%</td>
+                 </tr>
+              </tbody>
+              </table>
+        </div>
+
+
 
 
 
@@ -43,5 +171,75 @@
   </div>
 
 
+
+<script>
+    
+            const button = document.querySelector('#button');
+            const tooltip = document.querySelector('#tooltip');
+
+            const popperInstance = Popper.createPopper(button, tooltip, {
+  modifiers: [
+    {
+      name: 'offset',
+      options: {
+        offset: [0, 8],
+      },
+    },
+  ],
+});
+
+function show() {
+  // Make the tooltip visible
+  tooltip.setAttribute('data-show', '');
+
+  // Enable the event listeners
+  popperInstance.setOptions((options) => ({
+    ...options,
+    modifiers: [
+      ...options.modifiers,
+      { name: 'eventListeners', enabled: true },
+    ],
+  }));
+
+  // Update its position
+  popperInstance.update();
+}
+
+function hide() {
+  // Hide the tooltip
+  tooltip.removeAttribute('data-show');
+
+  // Disable the event listeners
+  popperInstance.setOptions((options) => ({
+    ...options,
+    modifiers: [
+      ...options.modifiers,
+      { name: 'eventListeners', enabled: false },
+    ],
+  }));
+}
+
+const showEvents = ['mouseenter', 'focus'];
+const hideEvents = ['mouseleave', 'blur'];
+
+showEvents.forEach((event) => {
+  button.addEventListener(event, show);
+});
+
+hideEvents.forEach((event) => {
+  button.addEventListener(event, hide);
+});
+
+
+            
+                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+                const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+                const popover = new bootstrap.Popover('.example-popover', {
+                container: 'body'
+                })
+
+            
+</script>
 
   <%- include('../partials/footer') %>

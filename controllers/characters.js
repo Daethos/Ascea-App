@@ -16,9 +16,9 @@ module.exports = {
 
 function show(req, res) {
     Character.findById(req.params.id)
-        .populate('weapon', '-_id -imgURL -__v')
-        .populate('shield', '-_id -imgURL -__v')
-        .populate('armor', '-_id -imgURLTop -imgURLMid -imgURLBot -__v')
+        .populate('weapon', '-_id -__v')
+        .populate('shield', '-_id -__v')
+        .populate('armor', '-_id -__v')
         .exec(function(err, characters) {
             // console.log(characters, '<- characters')
             res.render('characters/show', {
