@@ -22,124 +22,109 @@
     </div>
     <nav class="navbar bg-light">
         <div class="container-fluid">
-            <a class="btn btn-outline-success" href="/logout">Logout</a>
+            <a class="btn btn-outline-danger" href="/logout">Logout</a>
         </div>
       </nav>
   </nav>
 
-  <div class="container">
-    <div class="col-8 offset-2 bg-light p1 border text-center">
-        <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-        <h3><%= characters.name %> </h3>
-        </div>
-
-        <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-            <table class="table table-hover table-bordered border-info">
-                <thead>
-                  <tr>
-                      <th>Build Description</th>
-                      <th>Weapon</th>
-                      <th>Shield</th>
-                      <th>Armor</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td><%= characters.description %></td>
-                      <td><%= characters.weapon.name %></td>
-                      <td><%= characters.shield.name %></td>
-                      <td><%= characters.armor.name %></td>
-              </tbody>
-              </table>
-        </div>
-        <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-            <table class="table table-hover table-bordered border-info">
-                <thead>
-                  <tr>
-                      <th>Weapon Name</th>
-                      <th>Grip Style</th>
-                      <th>Attack Type</th>
-                      <th>Damage Type</th>
-                      <th>Physical Damage</th>
-                      <th>Magic Damage</th>
-                      <th>Crit Chance</th>
-                      <th>Weapon Icon</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td><%= characters.weapon.name %></td>
-                      <td><%= characters.weapon.grip %></td>
-                      <td><%= characters.weapon.attackType %></td>
-                      <td><%= characters.weapon.damageType %></td>
-                      <td><%= characters.weapon.physDam %> </td>
-                      <td><%= characters.weapon.magDam %> </td>
-                      <td>+<%= characters.weapon.crit %>%</td>
-                      <td><img src="<%= characters.weapon.imgURL %>"></td>
-                 </tr>
-                 
-              </tbody>
-              </table>
-              <table class="table table-hover table-bordered border-info">
-                <thead>
-                  <tr>
-                      <th>Shield</th>
-                      <th>Physical Defense</th>
-                      <th>Magic Defense</th>
-                      <th>Roll Timer</th>
-                      <th>Shield Icon</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td><%= characters.shield.name %></td>
-                      <td><%= characters.shield.physRes %>%</td>
-                      <td><%= characters.shield.magRes %>%</td>
-                      <td><%= characters.shield.roll %>s</td>
-                      <td><img src="<%= characters.shield.imgURL %>"></td>
-                 </tr>
-              </tbody>
-              </table>
-              <table class="table table-hover table-bordered border-info">
-                <thead>
-                  <tr>
-                      <th>Armor</th>
-                      <th>Physical Defense</th>
-                      <th>Magic Defense</th>
-                      <th>Dodge Chance</th>
-                      <th>Helm</th>
-                      <th>Chest</th>
-                      <th>Legs</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td><%= characters.armor.name %></td>
-                      <td><%= characters.armor.physRes %>%</td>
-                      <td><%= characters.armor.magRes %>%</td>
-                      <td><%= characters.armor.dodge %>%</td>
-                      <td><img src="<%= characters.armor.imgURLTop %>"></td>
-                      <td><img src="<%= characters.armor.imgURLMid %>"></td>
-                      <td><img src="<%= characters.armor.imgURLBot %>"></td>
-                 </tr>
-              </tbody>
-              </table>
-
-
-
-
-
-
-
-              
-        </div>
-
-
-
-
-
-</div>
+<div class="container">
+  <div class="col-8 offset-2 bg-light p1 border text-center">
+    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
+      <h3><%= characters.name %> </h3>
+    </div>
+    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
+      <table class="table table-hover table-bordered border-info">
+        <thead>
+          <tr>
+            <th>Build Description</th>
+            <th>Weapon</th>
+            <th>Shield</th>
+            <th>Armor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= characters.description %></td>
+            <td><%= characters.weapon.name %></td>
+            <td><%= characters.shield.name %></td>
+            <td><%= characters.armor.name %></td>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
+      <table class="table table-hover table-bordered border-info">
+        <thead>
+          <tr>
+            <th>Weapon Name</th>
+            <th>Grip Style</th>
+            <th>Attack Type</th>
+            <th>Damage Type</th>
+            <th>Physical Damage</th>
+            <th>Magic Damage</th>
+            <th>Crit Chance</th>
+            <th>Weapon Icon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= characters.weapon.name %></td>
+            <td><%= characters.weapon.grip %></td>
+            <td><%= characters.weapon.attackType %></td>
+            <td><%= characters.weapon.damageType %></td>
+            <td><%= characters.weapon.physDam %> </td>
+            <td><%= characters.weapon.magDam %> </td>
+            <td>+<%= characters.weapon.crit %>%</td>
+            <td><img src="<%= characters.weapon.imgURL %>"></td>
+          </tr>   
+        </tbody>
+      </table>
+      <table class="table table-hover table-bordered border-info">
+        <thead>
+          <tr>
+            <th>Shield</th>
+            <th>Physical Defense</th>
+            <th>Magic Defense</th>
+            <th>Roll Timer</th>
+            <th>Shield Icon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= characters.shield.name %></td>
+            <td><%= characters.shield.physRes %>%</td>
+            <td><%= characters.shield.magRes %>%</td>
+            <td><%= characters.shield.roll %>s</td>
+            <td><img src="<%= characters.shield.imgURL %>"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-hover table-bordered border-info">
+        <thead>
+          <tr>
+            <th>Armor</th>
+            <th>Physical Defense</th>
+            <th>Magic Defense</th>
+            <th>Dodge Chance</th>
+            <th>Helm</th>
+            <th>Chest</th>
+            <th>Legs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= characters.armor.name %></td>
+            <td><%= characters.armor.physRes %>%</td>
+            <td><%= characters.armor.magRes %>%</td>
+            <td><%= characters.armor.dodge %>%</td>
+            <td><img src="<%= characters.armor.imgURLTop %>"></td>
+            <td><img src="<%= characters.armor.imgURLMid %>"></td>
+            <td><img src="<%= characters.armor.imgURLBot %>"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+</div>
 
 
 

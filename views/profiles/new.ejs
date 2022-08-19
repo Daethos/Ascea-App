@@ -36,32 +36,25 @@
   <div class="container">
 
 <div class="col-8 offset-2 bg-light p1 border text-center">
-
-    <div class="col-10 bg-white text-center offset-1 p-2 mt-5 border">
+  <div class="col-10 bg-white text-center offset-1 p-2 mt-5 border">
     <h2>Profile Finder And Creator!</h2>
-    </div>
-    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
+  </div>
+  <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
     <h5>Firstly, Do You Possess A Profile?</h5>
-    </div>
-    
-    <div class="col-10 bg-white text-Center offset-1 p-2 border">
-        <% profile.forEach(function(p) { %>
-         
-        <a class="btn btn-outline-primary btn-large" href="/profiles/<%= p._id %>">Go to Your Profile Named: <%= p.name %> !</a>
-     
-        <% }) %>  
-    </div>
-    
+  </div>
+  <div class="col-10 bg-white text-Center offset-1 p-2 border">
+    <% profile.forEach(function(p) { %>
+      <a class="btn btn-outline-primary btn-large" href="/profiles/<%= p._id %>">Go to Your Profile Named: <%= p.name %> !</a>
+    <% }) %>  
+  </div>
     <form id="create-profile" action="/profiles" method="POST">
-        
-        <div class="form-floating text-start col-10 offset-1 mt-5">
-            <textarea class="form-control" name="name" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">Create Profile Name</label>
-          </div>
-        <input class="btn btn-outline-success btn-lg my-4" type="submit" value="Create Profile">
+  <div class="form-floating text-start col-10 offset-1 mt-5">
+    <textarea class="form-control" name="name" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      <label for="floatingTextarea">Create Profile Name</label>
+  </div>
+    <input class="btn btn-outline-success btn-lg my-4" type="submit" value="Create Profile">
     </form>
-
-</div>
+  </div>
 </div>
 
 <%- include('../partials/footer') %>

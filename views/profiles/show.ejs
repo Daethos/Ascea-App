@@ -32,139 +32,127 @@
     </div>
     <nav class="navbar bg-light">
         <div class="container-fluid">
-            <a class="btn btn-outline-success" href="/logout">Logout</a>
+            <a class="btn btn-outline-danger" href="/logout">Logout</a>
         </div>
       </nav>
   </nav>
 
 <div class="container text-center">
-<div class="col-8 offset-2 bg-light p1 border">
-
+  <div class="col-8 offset-2 bg-light p1 border">
   <div class="col-10 bg-white text-center offset-1 p-2 mt-4 border">
     <h1>Greetings, <%= profile.name %>!</h1>
   </div>
-    
-  
-
-    <div class="col-10 bg-white text-center offset-1 p-2 my-4 border">
+  <div class="col-10 bg-white text-center offset-1 p-2 my-4 border">
     <p>
       <button class="btn btn-outline-info btn-lg mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Ascean va'Esai Competitors
       </button>
     </p>
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        <table class="table table-hover table-bordered border-info">
-          <thead>
-            <tr>
-                <th>Character Name</th>
-                <th>Build Description</th>
-                <th>Weapon</th>
-                <th>Shield</th>
-                <th>Armor</th>
-                <th>Remove!</th>
-                <th>Delete?!</th>
-            </tr>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <table class="table table-hover table-bordered border-info">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Weapon</th>
+            <th>Shield</th>
+            <th>Armor</th>
+            <th>Remove!</th>
+            <th>Delete?!</th>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-            <% characters.forEach(function(c) { %>
-                <td><a href="/profiles/<%= profile._id %>/characters/<%= c._id %>"><%= c.name %></a></td>
-                <td><%= c.description %></td>
-                <td><%= c.weapon.name %></td>
-                <td><%= c.shield.name %></td>
-                <td><%= c.armor.name %></td>
-                <td>
-                    <form action="/characters/<%= c._id %>?_method=PUT" method="POST">
-                        <button class="btn btn-outline-dark btn-sm" id="remChar" type="submit">Remove Character</button>
-                    </form>
-                </td>
-                <td>
-                    <% if (user?._id.equals(c.user)) { %>
-    <form action="/characters/<%= c._id %>?_method=DELETE" method="POST">
-        <button class="btn btn-outline-danger btn-sm" id="charID" type="submit">Delete Character</button>
-    </form>
-            <% } %>
-                </td>
-            </tr>
-            <% }) %>
+          <tr>
+              <% characters.forEach(function(c) { %>
+            <td><a href="/profiles/<%= profile._id %>/characters/<%= c._id %>"><%= c.name %></a></td>
+            <td><%= c.description %></td>
+            <td><%= c.weapon.name %><br><img src='<%= c.weapon.imgURL %>'></td>
+            <td><%= c.shield.name %><br><img src='<%= c.shield.imgURL %>'></td>
+            <td><%= c.armor.name %><br><img src='<%= c.armor.imgURLMid %>'></td>
+            <td>
+              <form action="/characters/<%= c._id %>?_method=PUT" method="POST">
+                <button class="btn btn-outline-dark btn-sm" id="remChar" type="submit">Remove Character</button>
+              </form>
+            </td>
+            <td>
+              <% if (user?._id.equals(c.user)) { %>
+              <form action="/characters/<%= c._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-outline-danger btn-sm" id="charID" type="submit">Delete Character</button>
+              </form>
+              <% } %>
+            </td>
+          </tr>
+              <% }) %>
         </tbody>
-        </table>
-      </div>
+      </table>
     </div>
-    </div>
-    
-    
-
-
-</div>
+  </div>
+  </div>
+  </div>
 </div>
 
 <script>
-    const button = document.querySelector('#button');
-            const tooltip = document.querySelector('#tooltip');
 
-            const popperInstance = Popper.createPopper(button, tooltip, {
-  modifiers: [
-    {
-      name: 'offset',
-      options: {
-        offset: [0, 8],
+  const button = document.querySelector('#button');
+  const tooltip = document.querySelector('#tooltip');
+
+  const popperInstance = Popper.createPopper(button, tooltip, {
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 8],
+        },
       },
-    },
-  ],
-});
+    ],
+  });
 
-function show() {
+  function show() {
   // Make the tooltip visible
-  tooltip.setAttribute('data-show', '');
-
+    tooltip.setAttribute('data-show', '');
   // Enable the event listeners
-  popperInstance.setOptions((options) => ({
-    ...options,
-    modifiers: [
-      ...options.modifiers,
-      { name: 'eventListeners', enabled: true },
-    ],
-  }));
-
+    popperInstance.setOptions((options) => ({
+      ...options,
+      modifiers: [
+        ...options.modifiers,
+        { name: 'eventListeners', enabled: true },
+      ],
+    }));
   // Update its position
-  popperInstance.update();
-}
+    popperInstance.update();
+  }
 
-function hide() {
+  function hide() {
   // Hide the tooltip
-  tooltip.removeAttribute('data-show');
-
+    tooltip.removeAttribute('data-show');
   // Disable the event listeners
-  popperInstance.setOptions((options) => ({
-    ...options,
-    modifiers: [
-      ...options.modifiers,
-      { name: 'eventListeners', enabled: false },
-    ],
-  }));
-}
+    popperInstance.setOptions((options) => ({
+      ...options,
+      modifiers: [
+        ...options.modifiers,
+        { name: 'eventListeners', enabled: false },
+      ],
+    }));
+  }
 
-const showEvents = ['mouseenter', 'focus'];
-const hideEvents = ['mouseleave', 'blur'];
+  const showEvents = ['mouseenter', 'focus'];
+  const hideEvents = ['mouseleave', 'blur'];
 
-showEvents.forEach((event) => {
-  button.addEventListener(event, show);
-});
+  showEvents.forEach((event) => {
+    button.addEventListener(event, show);
+  });
 
-hideEvents.forEach((event) => {
-  button.addEventListener(event, hide);
-});
-
-
+  hideEvents.forEach((event) => {
+    button.addEventListener(event, hide);
+  });
             
-                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-                const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
-                const popover = new bootstrap.Popover('.example-popover', {
-                container: 'body'
-                })
+  const popover = new bootstrap.Popover('.example-popover', {
+    container: 'body'
+  });
 
 </script>
 

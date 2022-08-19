@@ -6,8 +6,6 @@ const Weapon = require('../models/weapon');
 const Shield = require('../models/shield');
 const Armor = require('../models/armor');
 const { unsubscribe } = require('../routes');
-const user = require('../models/user');
-// const characters = require('./characters');
 
 module.exports = {
     index,
@@ -18,15 +16,12 @@ module.exports = {
 
 function show(req, res) {
     Profile.findById(req.params.id)
-    // .populate('characters')
     .exec(function(err, profile) {
-        console.log(profile, "<- show page")
         Character.find({_id: {$in: profile.characters}})
-        .populate('weapon', '-_id -imgURL -__v')
-        .populate('shield', '-_id -imgURL -__v')
-        .populate('armor', '-_id -imgURLTop -imgURLMid -imgURLBot -__v')
+        .populate('weapon', '-_id -__v')
+        .populate('shield', '-_id -__v')
+        .populate('armor', '-_id -__v')
         .exec(function(err, characters) {
-            // console.log(characters, '<- characters')
             res.render('profiles/show', {
                 title: 'Profile Characters',
                 profile,
@@ -34,24 +29,22 @@ function show(req, res) {
             });
         });
     });
-}
+};
 
 function index(req, res) {
     Profile.find({}, function(err, profile) {
-        
         if(err) {
             res.send('Error trying to find profiles, check terminal');
         }
         if (profile.user === true) {
             res.render(`profiles/${profile._id}`)
         } else {
-        res.render('profiles/index.ejs', {
-            title: 'Create Profile',
-            profile
-        });
+            res.render('profiles/index.ejs', {
+                title: 'Create Profile',
+                profile
+            });
         }
     });
-
 }  
 
 function create(req, res) {
@@ -66,7 +59,6 @@ function create(req, res) {
     });
 }
 
-
 function newProfile(req, res) {
     User.findById(req.user.id, function(err, user) {
         Profile.find({user: req.user.id}, function(err, profile) {
@@ -75,6 +67,5 @@ function newProfile(req, res) {
                 profile
             });
         });
-    }
-    )
+    });
 }

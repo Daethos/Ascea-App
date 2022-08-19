@@ -33,25 +33,23 @@
       </nav>
   </nav>
 
-<div class="col-8 offset-2 bg-light p1 border">
+  <div class="col-8 offset-2 bg-light p1 border">
     <% if (!user) { %>
-<div class="col-10 bg-white text-start offset-1 p-2 mt-5 border">
-    <!-- <a class="btn btn-outline-danger btn-lg my-5" href="/logout">LOG OUT</a> -->
+  <div class="col-10 bg-white text-start offset-1 p-2 mt-5 border">
     <h2>Login Here:</h2>
-</div>
-<div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
+  </div>
+  <div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
     <a class="btn btn-outline-success btn-lg my-3" href="/auth/google" class="login">LOG IN</a>
-</div>
-<% } else { %>
-<div class="col-10 bg-white text-start offset-1 p-2 mt-5 border">
+  </div>
+    <% } else { %>
+  <div class="col-10 bg-white text-start offset-1 p-2 mt-5 border">
     <h2>Create Profile:</h2>
-    </div>
-    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
+  </div>
+  <div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
     <form id="make-profile" action="/profiles/new" method="GET">
-        <input class="btn btn-outline-dark btn-lg my-5" type="submit" value="Create Profile!">
+    <input class="btn btn-outline-dark btn-lg my-5" type="submit" value="Create Profile!">
     </form>
-   
-    </div>
+  </div>
     <% } %>
 </div>
 

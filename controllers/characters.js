@@ -16,22 +16,19 @@ module.exports = {
 
 function show(req, res) {
     Profile.findById(req.params.profileId, function(err, profile) {
-    Character.findById(req.params.charactersId)
-        .populate('weapon', '-_id -__v')
-        .populate('shield', '-_id -__v')
-        .populate('armor', '-_id -__v')
-        .exec(function(err, characters) {
-            // console.log(characters, '<- characters')
-            res.render('characters/show', {
-                title: 'Character Stat Page',
-                profile,
-                characters
-            })
-        })
-    })
+        Character.findById(req.params.charactersId)
+            .populate('weapon', '-_id -__v')
+            .populate('shield', '-_id -__v')
+            .populate('armor', '-_id -__v')
+            .exec(function(err, characters) {
+                res.render('characters/show', {
+                    title: 'Character Stat Page',
+                    profile,
+                    characters
+            });
+        });
+    });
 }
-
-
 
 function deleteCharacter(req, res) {
     Profile.findOne(
@@ -40,14 +37,13 @@ function deleteCharacter(req, res) {
             if (err) return res.redirect(`/profiles/${profile._id}`);
             // Getting rid of that darn character!
             profile.characters.remove(req.params.id);
-            // Character.delete(req.params.id);
             profile.save(function(err) {
                 Character.findOneAndDelete({_id: req.params.id, user: req.user._id}, function(err) {
                     res.redirect(`/profiles/${profile._id}`);
-                })
-            })
+                });
+            });
         }
-    )
+    );
 }
 
 function removeCharacter(req, res) {
@@ -57,15 +53,12 @@ function removeCharacter(req, res) {
             if (err) return res.redirect(`/profiles/${profile._id}`);
             // Getting rid of that darn character!
             profile.characters.remove(req.params.id);
-         
             profile.save(function(err) {
                     res.redirect(`/profiles/${profile._id}`);
-      
-            })
+            });
         }
-    )
+    );
 }
-
 
 function newChar(req, res) {
     Profile.findById(req.params.id, function(err, profile) {
@@ -87,6 +80,7 @@ function newChar(req, res) {
         });
     });
 }
+
 function addToProfile(req, res) {
     Profile.findById(req.params.id, function(err, profile) {
         console.log(req.params.id, "<-Profile ID in addToProfile")
@@ -107,7 +101,6 @@ function create(req, res) {
         req.body.user = req.user._id;
         Character.create(req.body, function(err, characters) {
             console.log(characters, '<- Damn, look at that BEAST!');
-           
             if(err) {
                 console.log(err, '<- Error in Character Creation!');
                 return res.render('characters/new');
