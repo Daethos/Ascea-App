@@ -9,19 +9,13 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile._name%></a>
+            <a class="nav-link active" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
+            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Profile Menu
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>"><%= profile.name %> </a></li>
-                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link active" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
           </li>
         </ul>
       </div>
@@ -89,7 +83,7 @@
               <table class="table table-hover table-bordered border-info">
                 <thead>
                   <tr>
-                      <th>Shield Name</th>
+                      <th>Shield</th>
                       <th>Physical Defense</th>
                       <th>Magic Defense</th>
                       <th>Roll Timer</th>
@@ -109,7 +103,7 @@
               <table class="table table-hover table-bordered border-info">
                 <thead>
                   <tr>
-                      <th>Armor Name</th>
+                      <th>Armor</th>
                       <th>Physical Defense</th>
                       <th>Magic Defense</th>
                       <th>Dodge Chance</th>
@@ -137,30 +131,7 @@
 
 
 
-              <table class="table table-hover table-bordered border-info">
-                <thead>
-                  <tr>
-                      <th></th>
-                      <th>Plate Def</th>
-                      <th>Chain Def</th>
-                      <th>Leather Def</th>
-                      <th>Cloth Def</th>
-                      <th>Magic Damage</th>
-                      <th>Crit Chance</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td><%= characters.weapon.name %></td>
-                      <td><%= characters.weapon.grip %></td>
-                      <td><%= characters.weapon.attackType %></td>
-                      <td><%= characters.weapon.damageType %></td>
-                      <td><%= characters.weapon.physDam %> </td>
-                      <td><%= characters.weapon.magDam %> </td>
-                      <td>+<%= characters.weapon.crit %>%</td>
-                 </tr>
-              </tbody>
-              </table>
+              
         </div>
 
 

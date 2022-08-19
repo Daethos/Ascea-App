@@ -15,7 +15,8 @@ module.exports = {
 }
 
 function show(req, res) {
-    Character.findById(req.params.id)
+    Profile.findById(req.params.profileId, function(err, profile) {
+    Character.findById(req.params.charactersId)
         .populate('weapon', '-_id -__v')
         .populate('shield', '-_id -__v')
         .populate('armor', '-_id -__v')
@@ -27,7 +28,8 @@ function show(req, res) {
                 characters
             })
         })
-    }
+    })
+}
 
 
 

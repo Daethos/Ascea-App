@@ -9,18 +9,22 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile._name%></a>
+            <a class="nav-link active" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
+            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Profile Menu
+            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Champions
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>"><%= profile.name %> </a></li>
-                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a></li>
+              <% characters.forEach(c => { %>
+                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/<%= c._id %> "><%= c.name %> </a></li>
+                <% }) %>
             </ul>
           </li>
         </ul>
@@ -40,22 +44,11 @@
     <h1>Greetings, <%= profile.name %>!</h1>
   </div>
     
-    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
-    <h5>Select a Character From the Menu!</h5>
-    </div>
-
-
-    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 border">
-    <select class="btn btn-outline-dark">
-        <% characters.forEach(function(c) { %>
-            <option><%= c.name %></option>
-        <% }) %>
-    </select>
-    </div>
+  
 
     <div class="col-10 bg-white text-center offset-1 p-2 my-4 border">
     <p>
-      <button class="btn btn-outline-info btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <button class="btn btn-outline-info btn-lg mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Ascean va'Esai Competitors
       </button>
     </p>
@@ -76,7 +69,7 @@
         <tbody>
             <tr>
             <% characters.forEach(function(c) { %>
-                <td><a href="/characters/<%= c._id %>"><%= c.name %></a></td>
+                <td><a href="/profiles/<%= profile._id %>/characters/<%= c._id %>"><%= c.name %></a></td>
                 <td><%= c.description %></td>
                 <td><%= c.weapon.name %></td>
                 <td><%= c.shield.name %></td>
@@ -101,40 +94,7 @@
     </div>
     </div>
     
-    <table>
-        <thead>
-            <tr>
-                <th>Character Name</th>
-                <th>Build Description</th>
-                <th>Weapon</th>
-                <th>Shield</th>
-                <th>Armor</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <% characters.forEach(function(c) { %>
-                <td><%= c.name %> </td>
-                <td><%= c.description %></td>
-                <td><%= c.weapon.name %></td>
-                <td><%= c.shield.name %></td>
-                <td><%= c.armor.name %></td>
-                <td>
-                    <form action="/characters/<%= c._id %>?_method=PUT" method="POST">
-                        <button class="btn btn-outline-dark btn-sm" id="remChar" type="submit">Remove Character</button>
-                    </form>
-                </td>
-                <td>
-                    <% if (user?._id.equals(c.user)) { %>
-    <form action="/characters/<%= c._id %>?_method=DELETE" method="POST">
-        <button class="btn btn-outline-danger btn-sm" id="charID" type="submit">Delete Character</button>
-    </form>
-            <% } %>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+    
 
 
 </div>

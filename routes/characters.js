@@ -8,6 +8,6 @@ router.post('/profiles/:id/characters/new', isLoggedIn, charCtrl.create);
 router.post('/profiles/:id', isLoggedIn, charCtrl.addToProfile);
 router.delete('/characters/:id', isLoggedIn, charCtrl.delete);
 router.put('/characters/:id', isLoggedIn, charCtrl.update);
-router.get('/characters/:id', isLoggedIn, charCtrl.show);
+router.get('/profiles/:profileId/characters/:charactersId', isLoggedIn, charCtrl.show);
 
 module.exports = router;

@@ -6,6 +6,7 @@ const Weapon = require('../models/weapon');
 const Shield = require('../models/shield');
 const Armor = require('../models/armor');
 const { unsubscribe } = require('../routes');
+const user = require('../models/user');
 // const characters = require('./characters');
 
 module.exports = {
@@ -67,14 +68,13 @@ function create(req, res) {
 
 
 function newProfile(req, res) {
-    // User.findById(req.params.id, function(err, user) {
-        Profile.find({}, function(err, profile) {
+    User.findById(req.user.id, function(err, user) {
+        Profile.find({user: req.user.id}, function(err, profile) {
             res.render('profiles/new.ejs', {
                 title: 'Create Profile',
-                // user,
                 profile
             });
         });
     }
-//     )
-// }
+    )
+}
