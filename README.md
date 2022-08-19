@@ -1,9 +1,10 @@
-# passport-boilerplate
+# **[Ascean: Ascea Companion App][A First Place]**
 
 
-This is your passport boilerplate.
+## Hello again, weary competitor of the great **[Ascea][Another place]**! It is myself, Mirio, a kindly merchant traveling from Lor, here to showcase an exciting battle aid for your next duel. I'm sure your [constant gameplay][don't look] has left you bereft of hope, shambling for some semblance of salvation. Well, fear no more !! Just released of my [own free will][best not look], this may yet help you better setup your survival strategies. This application will allow you to create characters in advance with in-game statistics, seeing how one may better resource concepts and pair synergistic equipment pieces together for great forms of **_attack_** and **_defense_**! With once last chance to win now steeling your heart, let us venture into this sorcery the likes this daethic worshiper of the One Above believes somewhat blasphemous but for the purposes of this sale I'll allow it.
+<br /><br />
 
-## Setup 
+# Screenshot[s] of This Exciting Opportunity! 
 
 1. Clone the repo
 2. Rename the folder to your Project
@@ -30,6 +31,10 @@ This is your passport boilerplate.
 4. Setup your callback routes in your `routes/index`
 5. Setup a view and test your login!
 
+[A First Place]: https://shielded-cove-60674.herokuapp.com/profiles/62fecfbbea6f9e3e222fd24e/characters/new
+[don't look]: https://www.youtube.com/watch?v=uCGD9dT12C0
+[best not look]: https://www.youtube.com/watch?v=zfy5dFhw3ik
+[Another place]: https://daethos.github.io/Arena
 #### Make a commit 
 
 ```git commit -m "setup up oauth and User Model"```
