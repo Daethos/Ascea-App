@@ -1,78 +1,78 @@
 <%- include('../partials/header', locals) %>
 
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-black">
     <div class="container-fluid">
-      <a class="navbar-brand">Ascean va'Esai</a>
+      <a class="navbar-brand text-info">Ascean va'Esai</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
+            <a class="nav-link active text-info" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
+            <a class="nav-link active text-info" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
+            <a class="nav-link active text-info" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle text-info" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Champions
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu bg-black">
               <% characters.forEach(c => { %>
-                <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/<%= c._id %> "><%= c.name %> </a></li>
+                <li><a class="dropdown-item text-info" href="/profiles/<%= profile._id %>/characters/<%= c._id %> "><%= c.name %> </a></li>
                 <% }) %>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-    <nav class="navbar bg-light">
+    <nav class="navbar bg-black">
         <div class="container-fluid">
             <a class="btn btn-outline-danger" href="/logout">Logout</a>
         </div>
       </nav>
   </nav>
 
-<div class="container text-center">
-  <div class="col-8 offset-2 bg-light p1 border">
-  <div class="col-10 bg-white text-center offset-1 p-2 mt-4 border">
-    <h1>Greetings, <%= profile.name %>!</h1>
+<div class="container-fluid text-center">
+  <div class="col-10 offset-1 bg-black p1 border border-info">
+  <div class="col-10 bg-black text-center offset-1 p-2 mt-4 borderless">
+    <h1 class="text-info">Greetings, <%= profile.name %>!</h1>
   </div>
-  <div class="col-10 bg-white text-center offset-1 p-2 my-4 border">
+  <div class="col-10 bg-black text-center offset-1 p-2 my-4 borderless">
     <p>
       <button class="btn btn-outline-info btn-lg mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Ascean va'Esai Competitors
       </button>
     </p>
   <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-      <table class="table table-hover table-bordered border-info">
+    <div class="card card-body bg-black">
+      <table class="table table-hover bg-black table-bordered border-info">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Weapon</th>
-            <th>Shield</th>
-            <th>Armor</th>
-            <th>Remove!</th>
-            <th>Delete?!</th>
+            <th class="text-info">Name</th>
+            <th class="text-info">Description</th>
+            <th class="text-info">Weapon</th>
+            <th class="text-info">Shield</th>
+            <th class="text-info">Armor</th>
+            <th class="text-info">Remove!</th>
+            <th class="text-info">Delete?!</th>
           </tr>
         </thead>
         <tbody>
           <tr>
               <% characters.forEach(function(c) { %>
             <td><a href="/profiles/<%= profile._id %>/characters/<%= c._id %>"><%= c.name %></a></td>
-            <td><%= c.description %></td>
-            <td><%= c.weapon.name %><br><img src='<%= c.weapon.imgURL %>'></td>
-            <td><%= c.shield.name %><br><img src='<%= c.shield.imgURL %>'></td>
-            <td><%= c.armor.name %><br><img src='<%= c.armor.imgURLMid %>'></td>
+            <td class="text-info"><%= c.description %></td>
+            <td class="text-info"><%= c.weapon.name %><br><img src='<%= c.weapon.imgURL %>'></td>
+            <td class="text-info"><%= c.shield.name %><br><img src='<%= c.shield.imgURL %>'></td>
+            <td class="text-info"><%= c.armor.name %><br><img src='<%= c.armor.imgURLMid %>'></td>
             <td>
               <form action="/characters/<%= c._id %>?_method=PUT" method="POST">
-                <button class="btn btn-outline-dark btn-sm" id="remChar" type="submit">Remove Character</button>
+                <button class="btn btn-outline-light btn-sm" id="remChar" type="submit">Remove Character</button>
               </form>
             </td>
             <td>

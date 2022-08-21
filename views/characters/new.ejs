@@ -1,51 +1,51 @@
 <%- include('../partials/header', locals) %>
 
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-black">
     <div class="container-fluid">
-      <a class="navbar-brand">Ascean va'Esai</a>
+      <a class="navbar-brand text-info">Ascean va'Esai</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
+                <a class="nav-link active text-info" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
               </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
+            <a class="nav-link active text-info" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link active" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
+            <a class="nav-link active text-info" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
           </li>
           <li class="nav-item active dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle text-info" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Champions
             </a>
-            <ul class="dropdown-menu active">
+            <ul class="dropdown-menu active bg-black">
                 <% characters.forEach(c => { %>
-              <li><a class="dropdown-item" href="/profiles/<%= profile._id %>/characters/<%= c._id %> "><%= c.name %> </a></li>
+              <li><a class="dropdown-item text-info" href="/profiles/<%= profile._id %>/characters/<%= c._id %> "><%= c.name %></a></li>
               <% }) %>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-    <nav class="navbar bg-light">
+    <nav class="navbar bg-black">
         <div class="container-fluid">
             <a class="btn btn-outline-danger" href="/logout">Logout</a>
         </div>
       </nav>
   </nav>
     
-<div class="container text-center">
+<div class="container-fluid bg-black text-center">
 
-<div class="col-8 offset-2 bg-light p1 border">
-    <h1>Create your va'Esai!</h1>
+<div class="col-10 offset-1 bg-black p1 border border-info">
+    <h1 class="text-info">Ascean Character Creation</h1>
     
-    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-    <h2>Characters Created</h2>
+    <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 border border-info">
+    <h2 class="text-white">Existing Competitors</h2>
     <form id="add-char-to-profile" action="/profiles/<%= profile._id %>" method="POST">
-        <select class="btn btn-outline-dark" name="characterId">
+        <select class="btn btn-outline-info" name="characterId">
             <%- characters.map(c => 
               `<option value="${c._id}">${c.name}</option>`
             ).join('') %>
@@ -55,11 +55,11 @@
     </div>
  
     <form id="char-create" action="/profiles/<%= profile._id %>/characters/new" method="POST">
-    <div class="col-10 bg-white text-start offset-1 p-2 mb-4 border">
+    <div class="col-10 bg-black text-start offset-1 p-2 mb-4 border border-info">
         <div class="row justify-content-start">
-            <div class="col-7">
-                Create Name!
-                <input type="text" name="name"></input>
+            <div class="col-7 text-white">
+                <h5>Create Name!  
+                <input  class="text-white bg-black" type="text" name="name"></input></h5>
             </div>
             <div class="col-5 text-end">
                 <button class="btn btn-outline-success" type="submit">Create Character!</button>
@@ -67,20 +67,20 @@
         </div>
     </div>
 
-    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
-        <h5>Build Description:</h5>
+    <div class="col-10 bg-black text-start offset-1 p-2 mt-4 border border-info">
+        <h5 class="text-white">Character Description:</h5>
     </div>
     <div class="form-floating text-start col-10 offset-1">
-        <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-        <label for="floatingTextarea">WARNING: No Profanity Filter!</label>
+        <textarea class="form-control border border-info bg-black text-white" name="description" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+        <label for="floatingTextarea" class="text-white">WARNING: No Profanity Filter!</label>
     </div>
 
-    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
-        <h5>Weapon Selection:</h5>
+    <div class="col-10 bg-black text-start offset-1 p-2 mt-4 border border-info">
+        <h5 class="text-white">Weapon Selection:</h5>
     </div>
-    <div class="col-10 bg-white text-center offset-1 p-4 border">
+    <div class="col-10 bg-black text-center offset-1 p-4 border border-info">
         <div class="mb-4">
-            <select class="btn btn-outline-primary" name="weapon" id="weap-menu">
+            <select class="btn btn-outline-success" name="weapon" id="weap-menu">
                 <% weapons.forEach(function(w) { %>
                     <option value="<%= w.id %>"><%= w.name %></option>
                 <% }) %>
@@ -96,10 +96,11 @@
     <div id="arrow" data-popper-arrow></div>
     </div>
     <div class="row">
-    <div class="col-12 justify-content-center">
+    <div class="col-12 justify-content-center text-white bg-black">
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
+        data-bs-toggle="popover" data-bs-placement="top"
         data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-trigger="focus"
         data-bs-title="Gladius - Sword <img src='/images/gladius.png'>"
         data-bs-content="One-Hand<br>
         Attack Type: Physical<br>
@@ -109,9 +110,10 @@
         Gladius
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
+        data-bs-toggle="popover" data-bs-placement="top"
         data-bs-custom-class="custom-popover" data-bs-html="true"
         data-bs-title="Pugio - Dagger <img src='/images/pugio.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Pierce<br>
@@ -120,9 +122,10 @@
         Pugio
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Scythe - Shotel <img src='/images/scythe.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Pierce<br>
@@ -131,9 +134,10 @@
         Scythe
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Spear - Polearm <img src='/images/spear.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Pierce<br>
@@ -142,9 +146,10 @@
         Spear
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Katana - Sword <img src='/images/katana.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Slash<br>
@@ -153,9 +158,10 @@
         Katana
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Halberd - Poleaxe <img src='/images/halberd.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Two-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Pierce<br>
@@ -166,9 +172,10 @@
     </div></div>
     <div class="col-12 justify-content-center">
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Claymore - Zweihander <img src='/images/claymore.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Two-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Slash<br>
@@ -177,9 +184,10 @@
         Claymore
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Battle Axe - She/Her <img src='/images/battleaxe.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Two-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Slash<br>
@@ -188,9 +196,10 @@
         Battle Axe
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="War Hammer - Spiked <img src='/images/warhammer.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Two-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Blunt<br>
@@ -199,9 +208,10 @@
         War Hammer
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Mace - Bludgeoneer <img src='/images/mace.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Blunt<br>
@@ -210,9 +220,10 @@
         Mace
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="top"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Dai-Katana - Longsword <img src='/images/dai-katana.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Two-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Slash<br>
@@ -224,9 +235,10 @@
     </div>
     <div class="col-12 justify-content-center">
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="God Hand - UNLEASHED <img src='/images/godHand.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Blunt<br>
@@ -235,9 +247,10 @@
         God Hand
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Whirlwind - Scythe <img src='/images/whirlwind.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Two-Hand<br>
         Attack Type: Physical<br>
         Damage Type: Slash<br>
@@ -247,9 +260,10 @@
         Whirlwind
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Lava Spit - Spell <img src='/images/fire.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Fire, Blunt]<br>
@@ -258,9 +272,10 @@
         Lava Spit
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Lightning Spear - Spell <img src='/images/lightning-spear.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Lightning, Pierce]<br>
@@ -269,9 +284,10 @@
         Lightning Spear
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Magic Missile - Spell <img src='/images/sorcery.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Sorcery, Pierce]<br>
@@ -281,9 +297,10 @@
         </button>
     </div>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Arctic Bolt - Spell <img src='/images/frost.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Frost, Pierce]<br>
@@ -292,9 +309,10 @@
         Arctic Bolt
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Oak Crush - Spell <img src='/images/earth.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Earth, Blunt]<br>
@@ -303,9 +321,10 @@
         Oak Crush
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Hand of God - Spell <img src='/images/faith.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Faith, Slash]<br>
@@ -315,9 +334,10 @@
         Hand of God
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Insanity - Spell <img src='/images/dark.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Spooky, Blunt]<br>
@@ -328,8 +348,9 @@
         </button>
         <button type="button" class="btn btn-outline-info"
         data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover" data-bs-html="true"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Wind Fury - Spell <img src='/images/windfury.png'>"
+        data-bs-trigger="focus"
         data-bs-content="One-Hand<br>
         Attack Type: Magic<br>
         Damage Type: [Wind, Slash]<br>
@@ -339,59 +360,63 @@
         </button>
     </div>
 
-    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
-        <h5>Shield Selection:</h5>
+    <div class="col-10 bg-black text-start offset-1 p-2 mt-4 border border-info">
+        <h5 class="text-white">Shield Selection:</h5>
     </div>
-    <div class="col-10 bg-white text-center offset-1 p-4 border">
-        <select class="btn btn-outline-primary" name="shield" id="shield-menu">
+    <div class="col-10 bg-black text-center offset-1 p-4 border border-info">
+        <select class="btn btn-outline-success" name="shield" id="shield-menu">
             <% shields.forEach(s => { %>
                 <option value="<%= s.id %>"><%= s.name %></option>
             <% }) %>
         </select>
         <br><br>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Parrying Buckler <img src='/images/buckler.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Physical Defense: 5%<br>
         Magical Defense: 5%<br>
         Roll: 15s">
         Parrying Buckler
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Heater Shield - Medium <img src='/images/heater-shield.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Physical Defense: 10%<br>
         Magical Defense: 10%<br>
         Roll: 25s">
         Heater Shield
         </button>
         <button type="button" class="btn btn-outline-info"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Scutum - Large <img src='/images/scutum.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Physical Defense: 15%<br>
         Magical Defense: 15%<br>
         Roll: 35s">
         Scutum
         </button>
         <button type="button" class="btn btn-outline-info text-center"
-        data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+        data-bs-toggle="popover" data-bs-placement="bottom"
+        data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
         data-bs-title="Pavise - Great <img src='/images/pavise.png'>"
+        data-bs-trigger="focus"
         data-bs-content="Physical Defense: 20%<br>
         Magical Defense: 20%<br>
         Roll: 45s">
         Pavise
         </button>
     </div>
-    <div class="col-10 bg-white text-start offset-1 p-2 mt-4 border">
-        <h5>Armor Selection:</h5>
+    <div class="col-10 bg-black text-start offset-1 p-2 mt-4 border border-info">
+        <h5 class="text-white">Armor Selection:</h5>
     </div>
-    <div class="col-10 bg-white text-center offset-1 p-4 mb-5 border">
+    <div class="col-10 bg-black text-center offset-1 p-4 mb-5 border border-info">
         <p>
-            <select class="btn btn-outline-primary" name="armor" id="armor-menu">
+            <select class="btn btn-outline-success" name="armor" id="armor-menu">
             <% armors.forEach(a => { %>
                 <option value="<%= a.id %>"><%= a.name %></option>
                 <% }) %>
@@ -400,27 +425,30 @@
         <div class="row">
             <div class="col-12 justify-content-center">
            <button type="button" class="btn btn-outline-info"
-            data-bs-toggle="popover" data-bs-placement="right"
-            data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+            data-bs-toggle="popover" data-bs-placement="bottom"
+            data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
             data-bs-title="Legionnaire's Regalia <img src='/images/legion-armor.png'>"
+            data-bs-trigger="focus"
             data-bs-content="Physical Defense: 30%<br>
             Magical Defense: 30%<br>
             Dodge: 30%">
             Legionnaire's Regalia
             </button>
             <button type="button" class="btn btn-outline-info"
-            data-bs-toggle="popover" data-bs-placement="right"
-            data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+            data-bs-toggle="popover" data-bs-placement="bottom"
+            data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
             data-bs-title="Knight's Full Plate <img src='/images/knight-armor.png'>"
+            data-bs-trigger="focus"
             data-bs-content="Physical Defense: 50%<br>
             Magical Defense: 40%<br>
             Dodge: 5%">
             Knight's Full Plate
             </button>
             <button type="button" class="btn btn-outline-info"
-            data-bs-toggle="popover" data-bs-placement="right"
-            data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+            data-bs-toggle="popover" data-bs-placement="bottom"
+            data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
             data-bs-title="Mage's Robes <img src='/images/mage-armor.png'>"
+            data-bs-trigger="focus"
             data-bs-content="Physical Defense: 10%<br>
             Magical Defense: 50%<br>
             Dodge: 35%">
@@ -429,27 +457,30 @@
         </div>
         <div class="col-12 justify-content-center">
             <button type="button" class="btn btn-outline-info"
-            data-bs-toggle="popover" data-bs-placement="right"
-            data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+            data-bs-toggle="popover" data-bs-placement="bottom"
+            data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
             data-bs-title="Celtic Menagerie <img src='/images/celt-armor.png'>"
+            data-bs-trigger="focus"
             data-bs-content="Physical Defense: 25%<br>
             Magical Defense: 40%<br>
             Dodge: 25%">
             Celtic Menagerie
             </button>
             <button type="button" class="btn btn-outline-info"
-            data-bs-toggle="popover" data-bs-placement="right"
-            data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+            data-bs-toggle="popover" data-bs-placement="bottom"
+            data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
             data-bs-title="Poor Knight's Chainmail <img src='/images/chain-armor.png'>"
+            data-bs-trigger="focus"
             data-bs-content="Physical Defense: 40%<br>
             Magical Defense: 35%<br>
             Dodge: 15%">
             Poor Knight's Chainmail
             </button>
             <button type="button" class="btn btn-outline-info"
-            data-bs-toggle="popover" data-bs-placement="right"
-            data-bs-custom-class="custom-popover custom-popover" data-bs-html="true"
+            data-bs-toggle="popover" data-bs-placement="bottom"
+            data-bs-custom-class="custom-popover border border-info" data-bs-html="true"
             data-bs-title="Viking's Lamellar <img src='/images/viking-armor.png'>"
+            data-bs-trigger="focus"
             data-bs-content="Physical Defense: 40%<br>
             Magical Defense: 25%<br>
             Dodge: 25%">

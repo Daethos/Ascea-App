@@ -1,250 +1,366 @@
 <%- include('../partials/header', locals) %>
 
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand">Ascean va'Esai</a>
+<nav class="navbar navbar-expand-lg bg-black text-white">
+    <div class="container-fluid text-white">
+      <a class="navbar-brand text-info">Ascean va'Esai</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse text-white" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
+            <a class="nav-link active text-info" aria-current="page" href="https://daethos.github.io/Arena">Ascea: Last Duel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
+            <a class="nav-link active text-info" aria-current="page" href="/profiles/<%= profile._id %>"><%= profile.name %></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
+            <a class="nav-link active text-info" href="/profiles/<%= profile._id %>/characters/new">New Ascean</a>
           </li>
         </ul>
       </div>
     </div>
-    <nav class="navbar bg-light">
+    <nav class="navbar bg-black">
         <div class="container-fluid">
             <a class="btn btn-outline-danger" href="/logout">Logout</a>
         </div>
       </nav>
   </nav>
 
-<div class="container">
-  <div class="col-8 offset-2 bg-light p1 border text-center">
-    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-      <h3><%= characters.name %> </h3>
+<div class="container-fluid bg-black">
+  <div class="col-10 offset-1 bg-black p1 border border-info text-center">
+<div class="row">
+    <div class="col-4 offset-2 bg-black text-center offset-1 p-4 mt-1 borderless">
+      <h1 class="text-info"><%= characters.name %></h1>
     </div>
-    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-      <table class="table table-hover table-bordered border-info">
+    <div class="col-2 offset-1 bg-black p2 mt-3 borderless text-center">
+      <table class="table table-black table-borderless">
         <thead>
           <tr>
-            <th>Build Description</th>
-            <th>Weapon</th>
-            <th>Shield</th>
-            <th>Armor</th>
+            <th></th>
+            <th><img src="<%= characters.armor.imgURLTop %>"></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><%= characters.description %></td>
-            <td><%= characters.weapon.name %></td>
-            <td><%= characters.shield.name %></td>
-            <td><%= characters.armor.name %></td>
-          </tr>  
+            <td><img src="<%= characters.weapon.imgURL %>"></td>
+            <td><img src="<%= characters.armor.imgURLMid %>"></td>
+            <td><img src="<%= characters.shield.imgURL %>"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><img src="<%= characters.armor.imgURLBot %>"></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
+      </div>
+    <div class="col-8 offset-2 bg-black text-center p-2 border border-info">
+      <h5 class="text-white"><%= characters.description %></h5>
     </div>
-    <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
+  </div>
+    <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 border-info">
       <table class="table table-hover table-bordered border-info">
         <thead>
           <tr>
-            <th>Weapon Name</th>
-            <th>Grip Style</th>
-            <th>Attack Type</th>
-            <th>Damage Type</th>
-            <th>Physical Damage</th>
-            <th>Magic Damage</th>
-            <th>Crit Chance</th>
-            <th>Weapon Icon</th>
+            <th class="text-info">Weapon</th>
+            <th class="text-info">Grip Style</th>
+            <th class="text-info">Attack Type</th>
+            <th class="text-info">Damage Type</th>
+            <th class="text-info">Physical Damage</th>
+            <th class="text-info">Magic Damage</th>
+            <th class="text-info">Crit Chance</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><%= characters.weapon.name %></td>
-            <td><%= characters.weapon.grip %></td>
-            <td><%= characters.weapon.attackType %></td>
-            <td><%= characters.weapon.damageType %></td>
-            <td><%= characters.weapon.physDam %> </td>
-            <td><%= characters.weapon.magDam %> </td>
-            <td>+<%= characters.weapon.crit %>%</td>
-            <td><img src="<%= characters.weapon.imgURL %>"></td>
+            <td class="text-white"><%= characters.weapon.name %></td>
+            <td class="text-white" id="grip"><%= characters.weapon.grip.toLowerCase().charAt(0).toUpperCase() + characters.weapon.grip.slice(1); %></td>
+            <td class="text-white"><%= characters.weapon.attackType %></td>
+            <td class="text-white"><%= characters.weapon.damageType.join(' / '); %></td>
+            <td class="text-white"><%= characters.weapon.physDam %> </td>
+            <td class="text-white"><%= characters.weapon.magDam %> </td>
+            <td class="text-white">+<%= characters.weapon.crit %>%</td>
           </tr>   
         </tbody>
       </table>
       <table class="table table-hover table-bordered border-info">
         <thead>
           <tr>
-            <th>Shield</th>
-            <th>Physical Defense</th>
-            <th>Magic Defense</th>
-            <th>Roll Timer</th>
-            <th>Shield Icon</th>
+            <th class="text-info">Shield</th>
+            <th class="text-info">Physical Defense</th>
+            <th class="text-info">Magic Defense</th>
+            <th class="text-info">Roll Timer</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><%= characters.shield.name %></td>
-            <td><%= characters.shield.physRes %>%</td>
-            <td><%= characters.shield.magRes %>%</td>
-            <td><%= characters.shield.roll %>s</td>
-            <td><img src="<%= characters.shield.imgURL %>"></td>
+            <td class="text-white"><%= characters.shield.name %></td>
+            <td class="text-white"><%= characters.shield.physRes %>%</td>
+            <td class="text-white"><%= characters.shield.magRes %>%</td>
+            <td class="text-white"><%= characters.shield.roll %>s</td>
           </tr>
         </tbody>
       </table>
       <table class="table table-hover table-bordered border-info">
         <thead>
           <tr>
-            <th>Armor</th>
-            <th>Physical Defense</th>
-            <th>Magic Defense</th>
-            <th>Dodge Chance</th>
-            <th>Helm</th>
-            <th>Chest</th>
-            <th>Legs</th>
+            <th class="text-info">Armor</th>
+            <th class="text-info">Physical Defense</th>
+            <th class="text-info">Magic Defense</th>
+            <th class="text-info">Dodge Chance</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><%= characters.armor.name %></td>
-            <td><%= characters.armor.physRes %>%</td>
-            <td><%= characters.armor.magRes %>%</td>
-            <td><%= characters.armor.dodge %>%</td>
-            <td><img src="<%= characters.armor.imgURLTop %>"></td>
-            <td><img src="<%= characters.armor.imgURLMid %>"></td>
-            <td><img src="<%= characters.armor.imgURLBot %>"></td>
+            <td class="text-white"><%= characters.armor.name %></td>
+            <td class="text-white"><%= characters.armor.physRes %>%</td>
+            <td class="text-white"><%= characters.armor.magRes %>%</td>
+            <td class="text-white"><%= characters.armor.dodge %>%</td>
           </tr>
         </tbody>
       </table>
-      <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-        <table class="table table-hover table-bordered border-info">
-          <thead>
-            <tr>
-              <th>Physical Modifier</th>
-              <th>Blunt</th>
-              <th>Pierce</th>
-              <th>Slash</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Cloth</td>
-              <td>100</td>
-              <td>115</td>
-              <td>115</td>
-            </tr>
-            <tr>
-              <td>Leather</td>
-              <td>100</td>
-              <td>115</td>
-              <td>115</td>
-            </tr>
-            <tr>
-              <td>Chain</td>
-              <td>115</td>
-              <td>100</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <td>Plate</td>
-              <td>115</td>
-              <td>90</td>
-              <td>90</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
-      <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-        <table class="table table-hover table-bordered border-info">
+
+      <button class="col-4 btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleChar" aria-expanded="false" aria-controls="collapseExampleChar">
+        Character Modifiers [Work in Progress]
+      </button>
+    </p>
+    <div class="collapse" id="collapseExampleChar">
+      <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 border-outline-info">
+        <div class="card card-body bg-black">
+        <table class="table table-hover bg-black table-bordered border-info">
           <thead>
             <tr>
-              <th>Spell Modifier</th>
-              <th>Magic</th>
-              <th>Faith</th>
-              <th>Sorcery</th>
-              <th>Spooky</th>
+              <th class="text-info">Your Modifiers</th>
+              <th class="text-info"><%= characters.weapon.name %> -<img src="<%= characters.weapon.imgURL %>"></th>
+              <th class="text-info"><%= characters.shield.name %> -<img src="<%= characters.shield.imgURL %>"></th>
+              <th class="text-info"><%= characters.armor.name %> -<img src="<%= characters.armor.imgURLMid %>"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Modifer</td>
-              <td>+15% Chain</td>
-              <td>+10% Damage</td>
-              <td>+15% Damage</td>
-              <td>+10% Damage</td>
+              <td class="text-info">Leather-Cloth</td>
+              <td class="text-white">+5% Damage</td>
+              <td class="text-white">+15% Damage</td>
+              <td class="text-white">+5% Damage</td>
             </tr>
             <tr>
-              <td>Modifier</td>
-              <td>+15% Plate</td>
-              <td>+10% Defense</td>
-              <td>-10% Defense</td>
-              <td>+10% Defense</td>
+              <td class="text-info">Leather-Mail</td>
+              <td class="text-white">+5% Damage</td>
+              <td class="text-white">+15% Damage</td>
+              <td class="text-white">+5% Damage</td>
             </tr>
             <tr>
-              <td>Modifier</td>
-              <td>-10% Cloth</td>
-              <td>Daethos Blessing</td>
-              <td>Missile Barrage</td>
-              <td>Daethos Cursing</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-10 bg-white text-center offset-1 p-2 mb-4 mt-4 border">
-        <table class="table table-hover table-bordered border-info">
-          <thead>
-            <tr>
-              <th>Spell Modifier</th>
-              <th>Earth</th>
-              <th>Fire</th>
-              <th>Frost</th>
-              <th>Lightning</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Modifer</td>
-              <td>+5% Damage</td>
-              <td>+15% Damage</td>
-              <td>+5% Damage</td>
-              <td>+15% Damage</td>
+              <td class="text-info">Chain-Mail</td>
+              <td class="text-white">+5% Damage</td>
+              <td class="text-white">+15% Damage</td>
+              <td class="text-white">+5% Damage</td>
             </tr>
             <tr>
-              <td>Modifier</td>
-              <td>+15% Defense</td>
-              <td>-10% Defense</td>
-              <td>+15% Defense</td>
-              <td>-10% Defense</td>
+              <td class="text-info">Plate-Mail</td>
+              <td class="text-white">+15% Defense</td>
+              <td class="text-white">-10% Defense</td>
+              <td class="text-white">+15% Defense</td>
             </tr>
             <tr>
-              <td>Modifier</td>
-              <td>Quor'ei's Caer</td>
-              <td>Fyero's Caer</td>
-              <td>Senari's Caer</td>
-              <td>Astra's Cear</td>
+              <td class="text-info">Blunt</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Pierce</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Slash</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Earth</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Faith</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Fire</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Frost</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Lightning</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Sorcery</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
+            </tr>
+            <tr>
+              <td class="text-info">Spooky</td>
+              <td class="text-white">Quor'ei's Caer</td>
+              <td class="text-white">Fyero's Caer</td>
+              <td class="text-white">Senari's Caer</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
+    <button class="col-4 btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      General Modifiers
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 borderless">
+      <div class="card card-body bg-black">
+      <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 borderless">
+        <table class="table table-hover table-bordered border-info">
+          <thead>
+            <tr>
+              <th class="text-info">Physical Modifier</th>
+              <th class="text-info">Blunt</th>
+              <th class="text-info">Pierce</th>
+              <th class="text-info">Slash</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-info">Leather-Cloth</td>
+              <td class="text-info">100</td>
+              <td class="text-info">115</td>
+              <td class="text-info">115</td>
+            </tr>
+            <tr>
+              <td class="text-info">Leather-Mail</td>
+              <td class="text-info">100</td>
+              <td class="text-info">115</td>
+              <td class="text-info">115</td>
+            </tr>
+            <tr>
+              <td class="text-info">Chain-Mail</td>
+              <td class="text-info">115</td>
+              <td class="text-info">100</td>
+              <td class="text-info">100</td>
+            </tr>
+            <tr>
+              <td class="text-info">Plate-Mail</td>
+              <td class="text-info">115</td>
+              <td class="text-info">90</td>
+              <td class="text-info">90</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 borderless">
+        <table class="table table-hover table-bordered border-info">
+          <thead>
+            <tr>
+              <th class="text-info">Spell Modifier</th>
+              <th class="text-info">Magic</th>
+              <th class="text-info">Faith</th>
+              <th class="text-info">Sorcery</th>
+              <th class="text-info">Spooky</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-info">Modifer</td>
+              <td class="text-info">+15% Chain</td>
+              <td class="text-info">+10% Damage</td>
+              <td class="text-info">+15% Damage</td>
+              <td class="text-info">+10% Damage</td>
+            </tr>
+            <tr>
+              <td class="text-info">Modifier</td>
+              <td class="text-info">+15% Plate</td>
+              <td class="text-info">+10% Defense</td>
+              <td class="text-info">-10% Defense</td>
+              <td class="text-info">+10% Defense</td>
+            </tr>
+            <tr>
+              <td class="text-info">Modifier</td>
+              <td class="text-info">-10% Cloth</td>
+              <td class="text-info">Daethos Blessing</td>
+              <td class="text-info">Missile Barrage</td>
+              <td class="text-info">Daethos Cursing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 borderless">
+        <table class="table table-hover table-bordered border-info">
+          <thead>
+            <tr>
+              <th class="text-info">Spell Modifier</th>
+              <th class="text-info">Earth</th>
+              <th class="text-info">Fire</th>
+              <th class="text-info">Frost</th>
+              <th class="text-info">Lightning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-info">Modifer</td>
+              <td class="text-info">+5% Damage</td>
+              <td class="text-info">+15% Damage</td>
+              <td class="text-info">+5% Damage</td>
+              <td class="text-info">+15% Damage</td>
+            </tr>
+            <tr>
+              <td class="text-info">Modifier</td>
+              <td class="text-info">+15% Defense</td>
+              <td class="text-info">-10% Defense</td>
+              <td class="text-info">+15% Defense</td>
+              <td class="text-info">-10% Defense</td>
+            </tr>
+            <tr>
+              <td class="text-info">Modifier</td>
+              <td class="text-info">Quor'ei's Caer</td>
+              <td class="text-info">Fyero's Caer</td>
+              <td class="text-info">Senari's Caer</td>
+              <td class="text-info">Astra's Cear</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
 
 
-
 <script>
-    
-            const button = document.querySelector('#button');
-            const tooltip = document.querySelector('#tooltip');
 
-            const popperInstance = Popper.createPopper(button, tooltip, {
+    
+  const button = document.querySelector('#button');
+  const tooltip = document.querySelector('#tooltip');
+
+  const popperInstance = Popper.createPopper(button, tooltip, {
   modifiers: [
     {
       name: 'offset',
