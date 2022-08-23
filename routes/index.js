@@ -23,7 +23,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/',
+    successRedirect : '/profiles/new',
     // UPDATE THIS, where do you want the client to go after you login 
     failureRedirect : '/' //  UPDATE THIS, where do you want the client to go if login fails
     // I want it to go back to base page if it fails, but it ALWAYS signs me in =[

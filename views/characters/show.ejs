@@ -75,13 +75,13 @@
         </thead>
         <tbody>
           <tr>
-            <td class="text-white"><%= characters.weapon.name %></td>
-            <td class="text-white" id="grip"><%= characters.weapon.grip.toLowerCase().charAt(0).toUpperCase() + characters.weapon.grip.slice(1); %></td>
-            <td class="text-white"><%= characters.weapon.attackType %></td>
-            <td class="text-white"><%= characters.weapon.damageType.join(' / '); %></td>
-            <td class="text-white"><%= characters.weapon.physDam %> </td>
-            <td class="text-white"><%= characters.weapon.magDam %> </td>
-            <td class="text-white">+<%= characters.weapon.crit %>%</td>
+            <td class="text-white" id="char-weap-name"><%= characters.weapon.name %></td>
+            <td class="text-white" id="char-grip"><%= characters.weapon.grip.toLowerCase().charAt(0).toUpperCase() + characters.weapon.grip.slice(1); %></td>
+            <td class="text-white" id="char-att-type"><%= characters.weapon.attackType %></td>
+            <td class="text-white" id="char-dam-type"><%= characters.weapon.damageType.join(' / '); %></td>
+            <td class="text-white" id="char-phys-dam"><%= characters.weapon.physDam %> </td>
+            <td class="text-white" id="char-mag-dam"><%= characters.weapon.magDam %> </td>
+            <td class="text-white" id="char-weap-crit"><%= characters.weapon.crit %></td>
           </tr>   
         </tbody>
       </table>
@@ -96,10 +96,10 @@
         </thead>
         <tbody>
           <tr>
-            <td class="text-white"><%= characters.shield.name %></td>
-            <td class="text-white"><%= characters.shield.physRes %>%</td>
-            <td class="text-white"><%= characters.shield.magRes %>%</td>
-            <td class="text-white"><%= characters.shield.roll %>s</td>
+            <td class="text-white" id="char-shield-name"><%= characters.shield.name %></td>
+            <td class="text-white" id="char-shield-phys"><%= characters.shield.physRes %></td>
+            <td class="text-white" id="char-shield-mag"><%= characters.shield.magRes %></td>
+            <td class="text-white" id="char-shield-roll"><%= characters.shield.roll %>s</td>
           </tr>
         </tbody>
       </table>
@@ -114,118 +114,80 @@
         </thead>
         <tbody>
           <tr>
-            <td class="text-white"><%= characters.armor.name %></td>
-            <td class="text-white"><%= characters.armor.physRes %>%</td>
-            <td class="text-white"><%= characters.armor.magRes %>%</td>
-            <td class="text-white"><%= characters.armor.dodge %>%</td>
+            <td class="text-white" id="char-armor-name"><%= characters.armor.name %></td>
+            <td class="text-white" id="char-armor-phys"><%= characters.armor.physRes %></td>
+            <td class="text-white" id="char-armor-mag"><%= characters.armor.magRes %></td>
+            <td class="text-white" id="char-armor-dodge"><%= characters.armor.dodge %></td>
           </tr>
         </tbody>
       </table>
       </div>
 
       <button class="col-4 btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExampleChar" aria-expanded="false" aria-controls="collapseExampleChar">
-        Character Modifiers [Work in Progress]
+        Character Modifiers
       </button>
     </p>
     <div class="collapse" id="collapseExampleChar">
       <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 border-outline-info">
         <div class="card card-body bg-black">
-        <table class="table table-hover bg-black table-bordered border-info">
-          <thead>
-            <tr>
-              <th class="text-info">Your Modifiers</th>
-              <th class="text-info"><%= characters.weapon.name %> -<img src="<%= characters.weapon.imgURL %>"></th>
-              <th class="text-info"><%= characters.shield.name %> -<img src="<%= characters.shield.imgURL %>"></th>
-              <th class="text-info"><%= characters.armor.name %> -<img src="<%= characters.armor.imgURLMid %>"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-info">Leather-Cloth</td>
-              <td class="text-white">+5% Damage</td>
-              <td class="text-white">+15% Damage</td>
-              <td class="text-white">+5% Damage</td>
-            </tr>
-            <tr>
-              <td class="text-info">Leather-Mail</td>
-              <td class="text-white">+5% Damage</td>
-              <td class="text-white">+15% Damage</td>
-              <td class="text-white">+5% Damage</td>
-            </tr>
-            <tr>
-              <td class="text-info">Chain-Mail</td>
-              <td class="text-white">+5% Damage</td>
-              <td class="text-white">+15% Damage</td>
-              <td class="text-white">+5% Damage</td>
-            </tr>
-            <tr>
-              <td class="text-info">Plate-Mail</td>
-              <td class="text-white">+15% Defense</td>
-              <td class="text-white">-10% Defense</td>
-              <td class="text-white">+15% Defense</td>
-            </tr>
-            <tr>
-              <td class="text-info">Blunt</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Pierce</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Slash</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Earth</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Faith</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Fire</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Frost</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Lightning</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Sorcery</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-            <tr>
-              <td class="text-info">Spooky</td>
-              <td class="text-white">Quor'ei's Caer</td>
-              <td class="text-white">Fyero's Caer</td>
-              <td class="text-white">Senari's Caer</td>
-            </tr>
-          </tbody>
-        </table>
+          <table class="table table-hover table-bordered border-info">
+            <thead>
+              <tr>
+                <th class="text-info">Weapon</th>
+                <th class="text-info">Physical Damage</th>
+                <th class="text-info">Magic Damage</th>
+                <th class="text-info">Crit Chance</th>
+                <th class="text-info">Crit Damage</th>
+                <th class="text-info">Special</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-white"><%= characters.weapon.name %></td>
+                <td class="text-white" id="end-phys-dam"></td>
+                <td class="text-white" id="end-mag-dam"></td>
+                <td class="text-white" id="end-weap-crit"></td>
+                <td class="text-white" id="end-crit-dam">100</td>
+                <td class="text-white" id="end-weap-special"></td>
+              </tr>   
+            </tbody>
+          </table>
+          <table class="table table-hover table-bordered border-info">
+            <thead>
+              <tr>
+                <th class="text-info">Shield</th>
+                <th class="text-info">Postured Physical Defense</th>
+                <th class="text-info">Postured Magic Defense</th>
+                <th class="text-info">Roll Timer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-white"><%= characters.shield.name %></td>
+                <td class="text-white" id="end-shield-phys"></td>
+                <td class="text-white" id="end-shield-mag"></td>
+                <td class="text-white"><%= characters.shield.roll %>s</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-hover table-bordered border-info">
+            <thead>
+              <tr>
+                <th class="text-info">Armor</th>
+                <th class="text-info">Physical Defense</th>
+                <th class="text-info">Magic Defense</th>
+                <th class="text-info">Dodge Chance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-white"><%= characters.armor.name %></td>
+                <td class="text-white" id="end-armor-phys"></td>
+                <td class="text-white" id="end-armor-mag"></td>
+                <td class="text-white" id="end-armor-dodge"></td>
+              </tr>
+            </tbody>
+          </table>
       </div>
     </div>
   </div>
@@ -250,27 +212,27 @@
           <tbody>
             <tr>
               <td class="text-info">Leather-Cloth</td>
-              <td class="text-info">100</td>
-              <td class="text-info">115</td>
-              <td class="text-info">115</td>
+              <td class="text-info">100%</td>
+              <td class="text-info">115%</td>
+              <td class="text-info">115%</td>
             </tr>
             <tr>
               <td class="text-info">Leather-Mail</td>
-              <td class="text-info">100</td>
-              <td class="text-info">115</td>
-              <td class="text-info">115</td>
+              <td class="text-info">100%</td>
+              <td class="text-info">115%</td>
+              <td class="text-info">115%</td>
             </tr>
             <tr>
               <td class="text-info">Chain-Mail</td>
-              <td class="text-info">115</td>
-              <td class="text-info">100</td>
-              <td class="text-info">100</td>
+              <td class="text-info">115%</td>
+              <td class="text-info">100%</td>
+              <td class="text-info">100%</td>
             </tr>
             <tr>
               <td class="text-info">Plate-Mail</td>
-              <td class="text-info">115</td>
-              <td class="text-info">90</td>
-              <td class="text-info">90</td>
+              <td class="text-info">115%</td>
+              <td class="text-info">90%</td>
+              <td class="text-info">90%</td>
             </tr>
           </tbody>
         </table>
@@ -355,7 +317,256 @@
 
 
 <script>
+ // Make constants for the player variables (Weapon damage/type, armor resist etc... to play against other variables in functions)
+  const charStat = document.getElementById('character-table');
 
+  const charWeapName = document.getElementById('char-weap-name');
+  const charGrip = document.getElementById('char-grip');
+  const charAttType = document.getElementById('char-att-type');
+  const charDamType = document.getElementById('char-dam-type');
+  const charPhysDam = document.getElementById('char-phys-dam');
+  const charMagDam = document.getElementById('char-mag-dam');
+  const charWeapCrit = document.getElementById('char-weap-crit');
+
+  const charShieldName = document.getElementById('char-shield-name');
+  const charShieldPhys = document.getElementById('char-shield-phys');
+  const charShieldMag = document.getElementById('char-shield-mag');
+  const charShieldRoll = document.getElementById('char-shield-roll');
+
+  const charArmorName = document.getElementById('char-armor-name');
+  const charArmorPhys = document.getElementById('char-armor-phys');
+  const charArmorMag = document.getElementById('char-armor-mag');
+  const charArmorDodge = document.getElementById('char-armor-dodge');
+
+  const endPhysDam = document.getElementById('end-phys-dam');
+  const endMagDam = document.getElementById('end-mag-dam');
+  const endWeapCrit = document.getElementById('end-weap-crit');
+  const endCritDam = document.getElementById('end-crit-dam');
+  const endWeapSpe = document.getElementById('end-weap-special');
+
+  const endShieldPhys = document.getElementById('end-shield-phys');
+  const endShieldMag = document.getElementById('end-shield-mag');
+  const endShieldPosPhys = document.getElementById('end-shield-pos-phys');
+  const endShieldPosMag = document.getElementById('end-shield-pos-mag');
+
+  const endArmorPhys = document.getElementById('end-armor-phys');
+  const endArmorMag = document.getElementById('end-armor-mag');
+  const endArmorDodge = document.getElementById('end-armor-dodge');
+
+
+  window.onload = function() {
+    console.log(charWeapCrit.innerText);
+    console.log(charGrip.innerText);
+    console.log(charDamType.innerText.split(' ')[0]);
+
+    endPhysDam.innerText = charPhysDam.innerText;
+    endMagDam.innerText = charMagDam.innerText;
+    endWeapCrit.innerText = charWeapCrit.innerText;
+    endShieldPhys.innerText = charShieldPhys.innerText;
+    endShieldMag.innerText = charShieldMag.innerText;
+    endArmorPhys.innerText = charArmorPhys.innerText;
+    endArmorMag.innerText = charArmorMag.innerText;
+    endArmorDodge.innerText = charArmorDodge.innerText;
+
+    let magDam = endMagDam.innerText;
+    let physDam = endPhysDam.innerText;
+    let weapCrit = endWeapCrit.innerText;
+    let critDam = endCritDam.innerText;
+    let shieldPhys = endShieldPhys.innerText;
+    let shieldMag = endShieldMag.innerText;
+    let shieldPosPhys = endShieldPhys.innerText;
+    let shieldPosMag = endShieldMag.innerText;
+    let armorPhys = endArmorPhys.innerText;
+    let armorMag = endArmorMag.innerText;
+    let armorDodge = endArmorDodge.innerText;
+
+    if (charShieldName.innerText == 'Parrying Buckler') {
+      armorDodge = Number(armorDodge) + 5;
+      if (charGrip.innerText == 'OneHand') {
+        if (charAttType.innerText == 'Magic') {
+          magDam *= 1.1;
+          weapCrit = Number(weapCrit) + 3;
+        } else {
+          physDam *= 1.05;
+          weapCrit = Number(weapCrit) + 1;
+        }
+      }
+      if (charGrip.innerText == 'TwoHand') {
+        physDam *= 1.15;
+        magDam *= 1.15;
+        weapCrit = Number(weapCrit) + 5;
+      }
+    }
+
+    if (charGrip.innerText == 'OneHand') {
+      armorDodge = Number(armorDodge) + 5;
+      critDam = 250;
+    }
+    if (charGrip.innerText == 'TwoHand') {
+      armorDodge = Number(armorDodge) - 3;
+      weapCrit = Number(weapCrit) + 3;
+      critDam = 375;
+    }
+
+    if (charShieldName.innerText == 'Heater Shield') {
+      if (charGrip.innerText == 'OneHand') {
+        if (charAttType.innerText == 'Physical') {
+          physDam *= 1.15;
+          weapCrit = Number(weapCrit) + 3;
+        } else {
+          magDam *= 1.05;
+          weapCrit = Number(weapCrit) + 1;
+        }
+      }
+    }
+
+    if (charArmorName.innerText == "Mage's Robes") {
+      if (charAttType.innerText == 'Magic') {
+        physDam *= 1.25;
+        magDam *= 1.25;
+        weapCrit = Number(weapCrit) + 7;
+        armorDodge = Number(armorDodge) + 5;
+      }
+    }
+
+    if (charArmorName.innerText == "Celtic Menagerie" || charArmorName.innerText == "Viking's Lamellar") {
+      if (charGrip.innerText == 'TwoHand') {
+        physDam *= 1.25;
+        weapCrit = Number(weapCrit) + 7;
+        armorPhys = Number(armorPhys) * 0.9;
+        armorMag = Number(armorMag) * 0.9;
+      }
+      if (charDamType.innerText.split(' ')[0] == 'Frost' || charDamType.innerText.split(' ')[0] == 'Fire' || charDamType.innerText.split(' ')[0] == 'Lightning'  || charDamType.innerText.split(' ')[0] == 'Earth' || charDamType.innerText.split(' ')[0] == 'Wind') {
+        magDam *= 1.15;
+        weapCrit = Number(weapCrit) + 5;
+      }
+    }
+
+    if (charArmorName.innerText == "Legionnaire's Regalia") {
+      if (charWeapName.innerText == 'Gladius' || charWeapName.innerText == 'Pugio' || charWeapName.innerText == 'Spear') {
+        physDam *= 1.25;
+        weapCrit = Number(weapCrit) + 7;
+        armorPhys = Number(armorPhys) * 1.1;
+        armorMag = Number(armorMag) * 1.1;
+        shieldPhys = Number(shieldPhys) * 1.2;
+        shieldMag = Number(shieldMag) * 1.2;
+      }
+      if (charDamType.innerText.split(' ')[0] == 'Faith' || charDamType.innerText.split(' ')[0] == 'Spooky') {
+        physDam *= 1.15;
+        weapCrit = Number(weapCrit) + 5;
+      }
+    }
+
+    if (charShieldName.innerText == "Scutum") {
+      if (charWeapName.innerText == 'Gladius' || charWeapName.innerText == 'Pugio' || charWeapName.innerText == 'Spear') {
+        physDam *= 1.25;
+        weapCrit = Number(weapCrit) + 7;
+        armorPhys = Number(armorPhys) * 1.1;
+        armorMag = Number(armorMag) * 1.1;
+        shieldPhys = Number(shieldPhys) * 1.2;
+        shieldMag = Number(shieldMag) * 1.2;
+      }
+      if (charDamType.innerText.split(' ')[0] == 'Faith' || charDamType.innerText.split(' ')[0] == 'Spooky') {
+        physDam *= 1.15;
+        weapCrit = Number(weapCrit) + 5;
+      }
+    }
+
+    if (charArmorName.innerText == "Knight's Full Plate" || charArmorName.innerText == "Poor Knight's Chainmail") {
+      if (charGrip.innerText == 'OneHand') {
+        physDam *= 1.1;
+        weapCrit = Number(weapCrit) + 3;
+        armorPhys = Number(armorPhys) * 1.1;
+        armorMag = Number(armorMag) * 1.1;
+      if (charDamType.innerText.split(' ')[0] == 'Faith' || charDamType.innerText.split(' ')[0] == 'Spooky') {
+        magDam *= 1.1;
+        weapCrit = Number(weapCrit) + 3;
+        }
+      }
+    }
+
+    if (charDamType.innerText.split(' ')[0] == 'Fire' || charDamType.innerText.split(' ')[0] == 'Sorcery' || charDamType.innerText.split(' ')[0] == 'Lightning') {
+      magDam *= 1.15;
+      armorPhys = Number(armorPhys) * 0.9;
+      armorMag = Number(armorMag) * 0.9;
+      armorDodge = Number(armorDodge) + 5;
+    }
+
+    if (charDamType.innerText.split(' ')[0] == 'Faith' || charDamType.innerText.split(' ')[0] == 'Spooky') {
+      physDam *= 1.1;
+      magDam *= 1.1;
+      armorPhys = Number(armorPhys) * 1.1;
+      armorMag = Number(armorMag) * 1.1;
+      shieldPhys = Number(shieldPhys) * 1.1;
+      shieldMag = Number(shieldMag) * 1.1;
+    }
+
+    if (charDamType.innerText.split(' ')[0] == 'Earth' || charDamType.innerText.split(' ')[0] == 'Frost') {
+      physDam *= 1.05;
+      magDam *= 1.05;
+      armorPhys = Number(armorPhys) * 1.15;
+      armorMag = Number(armorMag) * 1.15;
+      shieldPhys = Number(shieldPhys) * 1.25;
+      shieldMag = Number(shieldMag) * 1.25;
+    }
+
+
+    if (charWeapName.innerText == 'Insanity') {
+      endWeapSpe.innerText = 'Tendrils of Daethos';
+    }
+    if (charWeapName.innerText == 'Hand of God') {
+      endWeapSpe.innerText = 'Hush of Daethos';
+    }
+    if (charWeapName.innerText == 'Lava Spit') {
+      endWeapSpe.innerText = "Fyero's Fervor";
+    }
+    if (charWeapName.innerText == 'Lightning Spear') {
+      endWeapSpe.innerText = "Astra's Burst";
+      armorDodge = Number(armorDodge) + 3;
+    }
+    if (charWeapName.innerText == 'Arctic Bolt') {
+      endWeapSpe.innerText = "Nyrolus's Shield";
+    }
+    if (charWeapName.innerText == 'Oak Crush') {
+      endWeapSpe.innerText = "Quor'ei's Care";
+    }
+    if (charWeapName.innerText == 'Wind Fury') {
+      endWeapSpe.innerText = "Ahn've's Fury";
+      armorDodge = Number(armorDodge) + 3;
+    }
+    if (charWeapName.innerText == 'Magic Missile') {
+      endWeapSpe.innerText = "Cambire's Chance";
+    }
+    if (charWeapName.innerText == 'God Hand') {
+      endWeapSpe.innerText = "Daethos Unleashed";
+    }
+    if (charWeapName.innerText == 'Whirlwind' || charWeapName.innerText == 'Scythe') {
+      endWeapSpe.innerText = "Reaping Storm";
+      armorDodge = Number(armorDodge) + 3;
+    }
+    if (charWeapName.innerText == 'Gladius' || charWeapName.innerText == 'Pugio' || charWeapName.innerText == 'Spear') {
+      endWeapSpe.innerText = 'Roman Barritus';
+      armorDodge = Number(armorDodge) + 5;
+      critDam *= 1.5;
+    }
+    if (charWeapName.innerText == 'War Hammer' || charWeapName.innerText == 'Battle Axe' || charWeapName.innerText == 'Claymore' || charWeapName.innerText == 'Halberd' || charWeapName.innerText == 'Mace' || charWeapName.innerText == 'Katana' || charWeapName.innerText == 'Dai=Katana') {
+      endWeapSpe.innerText = "Song of Se'dyro";
+    }
+    if (charWeapName.innerText == 'Katana' || charWeapName.innerText == 'Halberd') {
+      armorDodge = Number(armorDodge) + 3;
+    }
+    
+
+    endMagDam.innerText = Math.round(magDam);
+    endPhysDam.innerText = Math.round(physDam);
+    endWeapCrit.innerText = '+' + weapCrit + '%';
+    endShieldPhys.innerText = Math.round(shieldPhys) + Math.round(armorPhys) + '%';
+    endShieldMag.innerText = Math.round(shieldMag) + Math.round(armorMag) + '%';
+    endArmorPhys.innerText = Math.round(armorPhys) + '%';
+    endArmorMag.innerText = Math.round(armorMag) + '%';
+    endArmorDodge.innerText = armorDodge + '%';
+    endCritDam.innerText = critDam + '%';
+  }
     
   const button = document.querySelector('#button');
   const tooltip = document.querySelector('#tooltip');
