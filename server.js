@@ -12,6 +12,7 @@ const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
 const charRouter = require('./routes/characters');
 const profileRouter = require('./routes/profiles');
+const gameRouter = require('./routes/games')
 
 
 // create the Express app
@@ -59,6 +60,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRoutes);
 app.use('/', charRouter);
 app.use('/profiles', profileRouter);
+app.use('/', gameRouter);
 
 // invalid request, send 404 page
 app.use(function(req, res) {

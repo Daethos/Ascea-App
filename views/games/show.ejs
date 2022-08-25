@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link defer rel="stylesheet" href="/stylesheets/gamestyle.css" />
+    <script defer src="/javascripts/app.js"></script>
+    <title>Ascean va'Esai</title>
+    <!-- CSS only -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
+    <!-- JavaScript Bundle with Popper -->
+    <!-- <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
+
+</head>
+<body class="bg-black">
+
+<img src="/images/GladiatorArena.jpg" id="background" alt="arena">
+<img src="/images/Dark_Souls_You_Died.jpg" id="died" alt="You Died">
+<img src="/images/Victory.jpg" id="victory" alt="Victory Achieved">
+
+<h1><a href="/profiles/<%= profile._id %>/characters/<%= characters._id %>">The Ascea: Last Duel [Return]</a></h1>
+<h2 id="duel">Duel?</h2>
+<div id="start">
+    <button id="confirm" class="start-buttons">Ready?</button>
+</div>
+<div id="again">
+    <button id="continue">Continue?</button>
+</div>
+<div id="comp">
+    <p id="comp-name">Prince Dorien</p> 
+    <canvas id="computer-health"></canvas><br />
+    <img src="/images/Guts-Wolf.png" id="comp-img" alt="Computer Image">
+</div>
+<div id="play">
+    <canvas id="player-health"></canvas><br />
+    <div class="icon-imgs">
+        <div>
+            <img src="<%= characters.armor.imgURLTop %>" id="helm-img" class="armor-acc">
+        </div>
+        <div class="weap-div">
+            <img src="<%= characters.weapon.imgURL %>" id="weap-img" class="equip-icons" alt="Weap">
+            <span class="tooltip" id="weap-tt">Weapon</span>
+        </div>
+        <div class="armor-div">
+            <img src="<%= characters.armor.imgURLMid %>" id="armor-img" class="equip-icons" alt="Armor">
+            <span class="tooltip" id="armor-tt">Armor</span>
+        </div>
+        <div class="shield-div">
+            <img src="<%= characters.shield.imgURL %>" id="shield-img" class="equip-icons" alt="Shield">
+            <span class="tooltip" id="shield-tt">Shield</span>
+        </div><br />
+        <div>
+            <img src="<%= characters.armor.imgURLBot %>" id="greaves-img" class="armor-acc">
+        </div>
+    </div>
+    <div class="table">
+        <table id="table">
+            <tr>
+                <th colspan="4">Player Stats</th>
+            </tr>
+            <tr>
+                <td> Weapon Attack<br />Type</td>
+                <td id="att-type" class="stats"></td>
+                <td>Physical<br />Defense</td>
+                <td id ="phys-def" class="stats"></td>
+            </tr>
+            <tr>
+                <td>Weapon Damage<br />Type</td>
+                <td id="dam-type" class="stats"></td>
+                <td>Magical<br />Defense</td>
+                <td id="mag-def" class="stats"></td>
+            </tr>
+            <tr>
+                <td>Weapon<br />Damage</td>
+                <td id="damage" class="stats"></td>
+                <td>Dodge<br />Chance</td>
+                <td id="dodge-el" class="stats"></td>
+            </tr>
+            <tr>
+                <td>Critical<br />Chance</td>
+                <td id="crit" class="stats"></td>
+                <td>Roll<br />Timer</td>
+                <td id="roll-timer" class="stats"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="actions">
+    <button id="attack" class="action">Attack</button><button id="dodge" class="action">Dodge</button><button id="posture" class="action">Posture</button><button id="roll" class="action">Roll</button><button id ="initiate" class="action">Initiate</button>
+</div>
+<textarea class="text-box" id="console" readonly></textarea>
+
+<div id="hide-this">
+<table class="table table-hover table-bordered border-info">
+    <thead>
+      <tr>
+        <th class="text-info">Weapon</th>
+        <th class="text-info">Physical Damage</th>
+        <th class="text-info">Magic Damage</th>
+        <th class="text-info">Crit Chance</th>
+        <th class="text-info">Crit Damage</th>
+        <th class="text-info">Special</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-white"><%= characters.weapon.name %></td>
+        <td class="text-white" id="end-phys-dam"></td>
+        <td class="text-white" id="end-mag-dam"></td>
+        <td class="text-white" id="end-weap-crit"></td>
+        <td class="text-white" id="end-crit-dam">100</td>
+        <td class="text-white" id="end-weap-special"></td>
+      </tr>   
+    </tbody>
+  </table>
+  <table class="table table-hover table-bordered border-info">
+    <thead>
+      <tr>
+        <th class="text-info">Shield</th>
+        <th class="text-info">Postured Physical Defense</th>
+        <th class="text-info">Postured Magic Defense</th>
+        <th class="text-info">Roll Timer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-white"><%= characters.shield.name %></td>
+        <td class="text-white" id="end-shield-phys"></td>
+        <td class="text-white" id="end-shield-mag"></td>
+        <td class="text-white"><%= characters.shield.roll %>s</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-hover table-bordered border-info">
+    <thead>
+      <tr>
+        <th class="text-info">Armor</th>
+        <th class="text-info">Physical Defense</th>
+        <th class="text-info">Magic Defense</th>
+        <th class="text-info">Dodge Chance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-white"><%= characters.armor.name %></td>
+        <td class="text-white" id="end-armor-phys"></td>
+        <td class="text-white" id="end-armor-mag"></td>
+        <td class="text-white" id="end-armor-dodge"></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-hover table-bordered border-info">
+    <thead>
+      <tr>
+        <th class="text-info">Weapon</th>
+        <th class="text-info">Grip Style</th>
+        <th class="text-info">Attack Type</th>
+        <th class="text-info">Damage Type</th>
+        <th class="text-info">Physical Damage</th>
+        <th class="text-info">Magic Damage</th>
+        <th class="text-info">Crit Chance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-white" id="char-weap-name"><%= characters.weapon.name %></td>
+        <td class="text-white" id="char-grip"><%= characters.weapon.grip.toLowerCase().charAt(0).toUpperCase() + characters.weapon.grip.slice(1); %></td>
+        <td class="text-white" id="char-att-type"><%= characters.weapon.attackType %></td>
+        <td class="text-white" id="char-dam-type"><%= characters.weapon.damageType.join(' / '); %></td>
+        <td class="text-white" id="char-phys-dam"><%= characters.weapon.physDam %> </td>
+        <td class="text-white" id="char-mag-dam"><%= characters.weapon.magDam %> </td>
+        <td class="text-white" id="char-weap-crit"><%= characters.weapon.crit %></td>
+      </tr>   
+    </tbody>
+  </table>
+  <table class="table table-hover table-bordered border-info">
+    <thead>
+      <tr>
+        <th class="text-info">Shield</th>
+        <th class="text-info">Physical Defense</th>
+        <th class="text-info">Magic Defense</th>
+        <th class="text-info">Roll Timer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-white" id="char-shield-name"><%= characters.shield.name %></td>
+        <td class="text-white" id="char-shield-phys"><%= characters.shield.physRes %></td>
+        <td class="text-white" id="char-shield-mag"><%= characters.shield.magRes %></td>
+        <td class="text-white" id="char-shield-roll"><%= characters.shield.roll %></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-hover table-bordered border-info">
+    <thead>
+      <tr>
+        <th class="text-info">Armor</th>
+        <th class="text-info">Style</th>
+        <th class="text-info">Physical Defense</th>
+        <th class="text-info">Magic Defense</th>
+        <th class="text-info">Dodge Chance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-white" id="char-armor-name"><%= characters.armor.name %></td>
+        <td class="text-white" id="char-armor-type"><%= characters.armor.type %></td>
+        <td class="text-white" id="char-armor-phys"><%= characters.armor.physRes %></td>
+        <td class="text-white" id="char-armor-mag"><%= characters.armor.magRes %></td>
+        <td class="text-white" id="char-armor-dodge"><%= characters.armor.dodge %></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</body>
+</html>
