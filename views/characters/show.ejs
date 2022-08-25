@@ -164,10 +164,10 @@
             </thead>
             <tbody>
               <tr>
-                <td class="text-white"><%= characters.shield.name %></td>
+                <td class="text-white" id="char-shield-name"><%= characters.shield.name %></td>
                 <td class="text-white" id="end-shield-phys"></td>
                 <td class="text-white" id="end-shield-mag"></td>
-                <td class="text-white"><%= characters.shield.roll %>s</td>
+                <td class="text-white" id="char-shield-roll"><%= characters.shield.roll %>s</td>
               </tr>
             </tbody>
           </table>
@@ -175,6 +175,7 @@
             <thead>
               <tr>
                 <th class="text-info">Armor</th>
+                <th class="text-info">Style</th>
                 <th class="text-info">Physical Defense</th>
                 <th class="text-info">Magic Defense</th>
                 <th class="text-info">Dodge Chance</th>
@@ -183,6 +184,7 @@
             <tbody>
               <tr>
                 <td class="text-white"><%= characters.armor.name %></td>
+                <td class="text-white" id="char-armor-type"><%= characters.armor.type %></td>
                 <td class="text-white" id="end-armor-phys"></td>
                 <td class="text-white" id="end-armor-mag"></td>
                 <td class="text-white" id="end-armor-dodge"></td>
@@ -232,80 +234,8 @@
             <tr>
               <td class="text-info">Plate-Mail</td>
               <td class="text-info">115%</td>
-              <td class="text-info">90%</td>
-              <td class="text-info">90%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 borderless">
-        <table class="table table-hover table-bordered border-info">
-          <thead>
-            <tr>
-              <th class="text-info">Spell Modifier</th>
-              <th class="text-info">Magic</th>
-              <th class="text-info">Faith</th>
-              <th class="text-info">Sorcery</th>
-              <th class="text-info">Spooky</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-info">Modifer</td>
-              <td class="text-info">+15% Chain</td>
-              <td class="text-info">+10% Damage</td>
-              <td class="text-info">+15% Damage</td>
-              <td class="text-info">+10% Damage</td>
-            </tr>
-            <tr>
-              <td class="text-info">Modifier</td>
-              <td class="text-info">+15% Plate</td>
-              <td class="text-info">+10% Defense</td>
-              <td class="text-info">-10% Defense</td>
-              <td class="text-info">+10% Defense</td>
-            </tr>
-            <tr>
-              <td class="text-info">Modifier</td>
-              <td class="text-info">-10% Cloth</td>
-              <td class="text-info">Daethos Blessing</td>
-              <td class="text-info">Missile Barrage</td>
-              <td class="text-info">Daethos Cursing</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-10 bg-black text-center offset-1 p-2 mb-4 mt-4 borderless">
-        <table class="table table-hover table-bordered border-info">
-          <thead>
-            <tr>
-              <th class="text-info">Spell Modifier</th>
-              <th class="text-info">Earth</th>
-              <th class="text-info">Fire</th>
-              <th class="text-info">Frost</th>
-              <th class="text-info">Lightning</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-info">Modifer</td>
-              <td class="text-info">+5% Damage</td>
-              <td class="text-info">+15% Damage</td>
-              <td class="text-info">+5% Damage</td>
-              <td class="text-info">+15% Damage</td>
-            </tr>
-            <tr>
-              <td class="text-info">Modifier</td>
-              <td class="text-info">+15% Defense</td>
-              <td class="text-info">-10% Defense</td>
-              <td class="text-info">+15% Defense</td>
-              <td class="text-info">-10% Defense</td>
-            </tr>
-            <tr>
-              <td class="text-info">Modifier</td>
-              <td class="text-info">Quor'ei's Caer</td>
-              <td class="text-info">Fyero's Caer</td>
-              <td class="text-info">Senari's Caer</td>
-              <td class="text-info">Astra's Cear</td>
+              <td class="text-info">85%</td>
+              <td class="text-info">85%</td>
             </tr>
           </tbody>
         </table>
