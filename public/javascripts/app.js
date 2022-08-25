@@ -617,7 +617,7 @@ async function dodge() {
         mad = enemyMagAttDam * (1 - (armorMag / 100));
         compDamTot = pad + mad;
         enemyAttMod();
-        compDamTot *= (1 - (playerDodge / 200));
+        compDamTot *= (1 - (armorDodge / 200));
         Math.floor(compDamTot);
         playHealth -= compDamTot;
         textBox.value += 'You nearly dodge, yet ' + enemy.name + ' strikes you with ' + enemyDodgeWeapon.name + ' for ' + Math.round(compDamTot) + ' ' + enemyDodgeWeapon.damageType + ' damage! (Glancing Blow)' + '\n';
