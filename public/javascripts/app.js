@@ -696,7 +696,7 @@ async function playerAttack() {
 
     if (gameWeap === 'Wind Fury') {
         if (Math.floor(Math.random() * 101) > 92) {
-            textBox.value += "Your fervor ushers forth the favor of Ahn've, a devastating storm posseses you with the Windfury!" + '\n';
+            textBox.value += "Your fervor ushers forth Ahn've's Fury, a devastating Storm Posseses you with the Windfury!" + '\n';
             await sleep(1250);
             playerAttack();
             await sleep(1250);
@@ -711,7 +711,7 @@ async function playerAttack() {
 
     if (gameWeap === 'God Hand') {
         if (Math.floor(Math.random() * 101) > 92) {
-            textBox.value += 'Your fervor ushes forth the favor of Daethos, have unleashed the power of the GOD HAND!' + '\n';
+            textBox.value += 'Your fervor ushes forth the favor of Daethos, you have UNLEASHED the Power of the GOD HAND!' + '\n';
             await sleep(1250);
             playerAttack();
             await sleep(1250);
@@ -726,7 +726,7 @@ async function playerAttack() {
 
     if (gameWeap === 'Magic Missile') {
         if (Math.floor(Math.random() * 101) > 92) {
-            textBox.value += 'Your fervor ushers forth the favor of Cambire, your magic missiles multiply!' + '\n';
+            textBox.value += 'Your fervor ushers forth the Chance of Cambire, your Magic Missiles Mltiply!' + '\n';
             await sleep(1250);
             playerAttack();
             await sleep(1250);
@@ -743,14 +743,17 @@ async function playerAttack() {
 
     if (gameWeap === 'Lava Spit') {
         if (Math.floor(Math.random() * 101) > 85) {
-            textBox.value += "Your fervor ushers forth the favor of Fyero igniting through your body." + '\n';
-            await sleep(750);
+            console.log(playDamTot);
+            playDamTot = magDam;
+            console.log(playDamTot);
             playDamTot *= 1.75;
+            console.log(playDamTot);
             compHealth -= Math.round(playDamTot);
             compHealthBar.updateHealth(compHealth);
-            textBox.value += "You scorch " + enemy.name + " for " + Math.round(playDamTot) + " Pure Fire Damage!" + '\n';
+            textBox.value += "Your fervor ushers forth the favor of Fyero igniting through your body for " + Math.round(playDamTot) + " Pure Fire Damage!" + '\n';
             playHealth *= .95;
             playHealthBar.updateHealth(playHealth);
+            await sleep(1250);
             physDam *= 1.05;
             magDam *= 1.05;
             if (compHealth <= 0) {
@@ -763,14 +766,17 @@ async function playerAttack() {
 
     if (gameWeap === 'Lightning Spear') {
         if (Math.floor(Math.random() * 101) > 85) {
-            textBox.value += "Your fervor ushers forth the favor of Astra's lightning bursting from you!" + '\n';
-            await sleep(750);
+            console.log(playDamTot);
+            playDamTot = magDam;
+            console.log(playDamTot);
             playDamTot *= 1.75;
+            console.log(playDamTot);
             compHealth -= Math.round(playDamTot);
             compHealthBar.updateHealth(compHealth);
-            textBox.value += "You melt " + enemy.name + " for " + Math.round(playDamTot) + " Pure Lightning Damage!" + '\n';
+            textBox.value += "Your fervor ushers forth the favor of Astra's lightning bursting from you for " + Math.round(playDamTot) + " Pure Lightning Damage!" + '\n';
             playHealth *= .95;
             playHealthBar.updateHealth(playHealth);
+            await sleep(1250);
             physDam *= 1.05;
             magDam *= 1.05;
             if (compHealth <= 0) {
@@ -783,10 +789,12 @@ async function playerAttack() {
 
     if (gameWeap === 'Oak Crush') {
         if (Math.floor(Math.random() * 101) > 85) {
+            console.log(playDamTot);
             playDamTot *= 1.5;
+            console.log(playDamTot);
             compHealth -= Math.round(playDamTot);
             compHealthBar.updateHealth(compHealth);
-            textBox.value += "You crush " + enemy.name + " for " + Math.round(playDamTot) + " Pure Earth Damage!" + '\n';
+            textBox.value += "You Crush " + enemy.name + " for " + Math.round(playDamTot) + " Pure Earth Damage!" + '\n';
             armorMag *= 1.05;
             shieldMag *= 1.05;
             shieldPhys *= 1.1;
@@ -865,14 +873,16 @@ async function playerAttack() {
                 armorMag *= 1.03;
                 armorPhys *= 1.03;
                 shieldMag *= 1.03;
-            shieldPhys *= 1.03;
+                shieldPhys *= 1.03;
             }
         }
     }
 
     if (gameWeap === 'Insanity') {
         if (Math.floor(Math.random() * 101) > 85) {
+            console.log(playDamTot);
             playDamTot *= 2.25;
+            console.log(playDamTot);
             compHealth -= Math.round(playDamTot);
             compHealthBar.updateHealth(compHealth);
             playHealth *= .92;
@@ -891,12 +901,12 @@ async function playerAttack() {
 
     if (gameWeap === 'War Hammer' || gameWeap === 'Claymore' || gameWeap === 'Battle Axe' || gameWeap === 'Halberd' || gameWeap === 'Mace') {
         if (Math.floor(Math.random() * 101) > 92) {
-            await sleep(1250);
             playDamTot = 2.75 * (physAttDam + magAttDam);
             playDamTot *= 1 - (physDamRes / 100);
             compHealth -= Math.round(playDamTot);
             compHealthBar.updateHealth(compHealth);
             textBox.value += "The Caer of Se'dyro sings into your steel, " + enemy.name + ' receives ' + Math.round(playDamTot) + ' Crushing Damage!' + '\n';
+            await sleep(1250);
             physDam *= 1.05;
             magDam *= 1.05;
             if (compHealth <= 0) {
@@ -909,11 +919,11 @@ async function playerAttack() {
 
     if (gameWeap === 'Katana' || gameWeap === 'Dai-Katana') {
         if (Math.floor(Math.random() * 101) > 92) {
-            await sleep(1250);
             playDamTot = 1.75 * (physAttDam + magAttDam);
             compHealth -= Math.round(playDamTot);
             compHealthBar.updateHealth(compHealth);
             textBox.value += "The Sharpness of your Katana is undeniable, Impaling " + enemy.name + ' for ' + Math.round(playDamTot) + ' Damage!' + '\n';
+            await sleep(1250);
             if (compHealth <= 0) {
                 playWin();
                 return
@@ -1561,10 +1571,9 @@ function init() {
     continueEl.style.display = 'none';
     confirmEl.addEventListener('click', render);
 }
-function render() {
+async function render() {
     confirmEl.removeEventListener('click', render);
     continueEl.removeEventListener('click', render);
-    textBox.value += 'The game is now rendering, good luck!' + '\n';
     confirmEl.style.display = 'none';
     duelEl.style.display = 'none';
     diedEl.style.display = 'none';
@@ -1572,7 +1581,6 @@ function render() {
     playEl.style.display = 'inline-block';
     compEl.style.display = 'inline-block';
     victoryEl.style.display = 'none';
-    actionsEl.style.display = 'inline-block';
     initiateEl.style.display = 'none';
     rollBtn.style.display = 'inline-block';
     victoryEl.style.display = 'none';
@@ -1581,18 +1589,21 @@ function render() {
     randomEnemy();
     textBoxScroll();
     compEl.style.display = 'inline-block';
-    weapTT.innerText = gameWeap + '\n' + 'Attack Type: ' + gameAttType + '\n' +  'Damage Type: ' + gameDamTypeOne +
-    '\n' + 'Magic Damage: ' + Math.round(magDam) + '\n' + ' Physical Damage: ' + Math.round(physDam) + '\n' + 'Crit Chance: ' + '+' + weapCrit + '%';
-    shieldTT.innerText = gameShield + '\n' + 'Physical Defense: ' + Math.round(shieldPhys) + '%' + '\n' + 'Magical Defense: ' + Math.round(shieldMag) + '%' +
-    '\n' + 'Roll Timer: ' + charShieldRoll.innerText;
-    armorTT.innerText = gameArmor + '\n' + 'Physical Defense: ' + Math.round(armorPhys) + '%' + '\n' + 'Magical Defense: ' + Math.round(armorMag) + '%' +
-    '\n' + 'Dodge: ' + armorDodge + '%';
+    // weapTT.innerText = gameWeap + '\n' + 'Attack Type: ' + gameAttType + '\n' +  'Damage Type: ' + gameDamTypeOne +
+    // '\n' + 'Magic Damage: ' + Math.round(magDam) + '\n' + ' Physical Damage: ' + Math.round(physDam) + '\n' + 'Crit Chance: ' + '+' + weapCrit + '%';
+    // shieldTT.innerText = gameShield + '\n' + 'Physical Defense: ' + Math.round(shieldPhys) + '%' + '\n' + 'Magical Defense: ' + Math.round(shieldMag) + '%' +
+    // '\n' + 'Roll Timer: ' + charShieldRoll.innerText;
+    // armorTT.innerText = gameArmor + '\n' + 'Physical Defense: ' + Math.round(armorPhys) + '%' + '\n' + 'Magical Defense: ' + Math.round(armorMag) + '%' +
+    // '\n' + 'Dodge: ' + armorDodge + '%';
     compHealth = 9000;
     playHealth = 6000;
     playHealthBar.updateHealth(playHealth);
     compHealthBar.updateHealth(compHealth);
     compTimer();
     randomArena();
+    textBox.value += 'The game is now rendering, good luck!' + '\n';
+    await sleep(3000);
+    actionsEl.style.display = 'inline-block';
 }
 
 function playWin() {
